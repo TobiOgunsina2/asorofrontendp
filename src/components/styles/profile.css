@@ -1,0 +1,100 @@
+.menu-container{
+    position: relative;
+    margin-top: 7%;
+}
+
+.user-profile{
+    width: 2.6vw;
+    height: 2.6vw;
+    border-radius: 50%;
+    overflow: hidden;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(4, 189, 124);
+    color: white;
+    font-weight: 600;
+}
+
+.menu-container .custom-profile-dropdown{
+    width: 8vw;
+    position: absolute;
+    top: 7.7vh;
+    right: 0vw;
+    padding: 0 4px;
+    box-sizing: 0 5px 25px rgb(0 0 0 /10%);
+    border-radius: 15px ;
+    transition: 0.5s;
+    border: 1px solid #e4e4e4;
+    height: fit-content;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.menu-container .custom-profile-dropdown h3{
+    font-size: 20px;
+    margin: 0;
+}
+
+.menu-container .profile-active{
+    visibility: visible;
+    opacity: 1;
+}
+
+.menu-container .custom-profile-dropdown::before{
+    content: "";
+    position: absolute;
+    top: -5px;
+    right: 24px;
+    height: 20px;
+    background-color: white;
+    transform: rotate(45deg);
+    border-top: 1px solid grey;
+    border-left: 1px solid none;
+}
+
+.custom-profile-dropdown .menu-name{
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.2em;
+    border-bottom: 1px solid grey;
+}
+
+.menu-items-div{
+    width: 100%;
+}
+
+.menu-items-div .menu-item{
+    padding: 10px 0;
+    width: 100%;
+    cursor: pointer;
+    font-size: 15px;
+    text-align: left;
+}
+
+.menu-item-link{
+    text-decoration: none;
+    color: #6a6a6a;
+}
+
+.menu-item-link:hover{
+    color: rgb(61, 61, 255)
+}
+
+.logout{
+    font-weight: bold;
+    border-top: 1px grey solid;
+}
+
+.logout-link{
+    color: rgb(245, 90, 90);
+}
+
+.logout-link:hover{
+    color: rgb(252, 30, 30);
+}

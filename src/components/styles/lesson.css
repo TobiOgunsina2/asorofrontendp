@@ -1,0 +1,79 @@
+
+.lesson{
+    flex: 1 0 auto;
+    width: 17vw;
+    padding: 1vw;
+    background-color: rgb(184, 184, 184);
+    height: 12rem;
+    margin: 0.2rem;
+    overflow: hidden;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 500ms ease-in-out;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    scroll-snap-align: end;
+}
+
+.active{
+    flex-grow: 1;
+    width: 37vw;
+    background-color: rgb(73, 226, 250);
+}
+
+.active:hover{
+    background-color: rgb(59, 202, 224);
+}
+
+
+.lesson:not(.active):not(:last-child):hover{
+    background-color: rgb(129, 129, 129);
+}
+
+
+.active h3{
+    transition: text 4s ease-in; 
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.lesson:not(.active) h3{
+    display: none;
+}
+
+
+.play-button{
+    border-radius: 16px;
+    width: 40%;
+    height: 20%;
+}
+
+.lesson:not(.active) .play-button{
+    display: none;
+}
+
+.play-button:hover{
+    background-color: aliceblue;
+}
+
+.circle-background {
+    fill: none;
+    stroke: #ddd;
+}
+
+.circle-progress {
+    fill: none;
+    stroke: rgb(48, 181, 225);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transform: rotate(-90 1 1);
+}
+
+.lesson:not(.active) svg{
+    display: none;
+}
+
+.circle-text{
+    font-size: 8px;
+    font-weight: bold;
+}

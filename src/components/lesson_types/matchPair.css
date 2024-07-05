@@ -1,0 +1,65 @@
+
+.answers {
+    border: 10px 10px 10px 10px;
+}
+
+#Disabled0{
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-color: green;
+}
+
+#Disabled1{
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-color: green;
+}
+
+#Disabled3{
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-color: green;
+}
+
+#Wrong0{
+    border-color: red;
+}
+
+#Wrong1{
+    border-color: red;
+}
+
+#Wrong2{
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-color: red;
+}
+
+
+
+.cssSelecteda{
+    border-color: blue;
+}
+
+.cssSelectedp{
+    border-color: blue;
+}
+
+
+

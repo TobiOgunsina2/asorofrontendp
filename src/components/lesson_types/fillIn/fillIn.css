@@ -1,0 +1,43 @@
+.AppContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Block{
+    margin: 1em auto;
+}
+
+.FormRow{
+    margin: 0.5em;
+    padding: 0.5em;
+}
+
+.FormInput{
+    margin: 0.5em;
+  padding: 5px;
+  line-height: 1.5em;
+  border-radius: 10px;
+}
+
+.WordBox{
+    margin: 0.5em;
+    padding: 0.25em 0.5em;
+    cursor: pointer;
+    min-width: 1em;
+    border-bottom: 1px solid black;
+}
+
+.WordWrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.PrimaryButton{
+    background-color: gold;
+    border-radius: 5px;
+    border-color: #5b5;
+    margin: 0;
+    padding: 0.4em 0.8em;
+    line-height: 1.5em;
+}

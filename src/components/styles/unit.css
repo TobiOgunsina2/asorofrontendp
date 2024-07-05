@@ -1,0 +1,43 @@
+.unit{
+    border-style: solid;
+    border-color: grey;
+    border-radius: 1.1em;
+    margin-bottom: 2em;
+    padding: 1em;
+    width: 60vw;
+    height: 21.4rem;
+}
+
+.grid{
+    display: grid;
+    grid-auto-flow: column;
+}
+.grid button{
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+}
+
+.lessons{
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    scroll-snap-type: x mandatory;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.lesson:last-child{
+    background-color: transparent;
+    color: transparent;
+    border: transparent;
+}
+
+.card button{
+    width: 2em;
+    height: 2em;
+}
+
+
+

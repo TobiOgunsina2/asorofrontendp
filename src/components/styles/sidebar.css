@@ -1,0 +1,31 @@
+.sidebar {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    border-right: solid 2px;
+    justify-content: right;
+    text-align: left;
+    padding-left: 1em;
+    padding-right: 0.2em;
+}
+
+.sidebar p{
+    padding: 2%
+}
+.sidebar .sidebar-link{
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+.sidebar p:hover{
+    border-start-start-radius: 10px;
+    border-end-start-radius: 10px;
+    background-color: rgb(180, 180, 180);
+}
+
+

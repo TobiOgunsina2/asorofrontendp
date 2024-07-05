@@ -1,0 +1,27 @@
+.typeIn{
+    padding: 3em 10em;
+    display: grid;
+    justify-content: center;
+}
+
+.type-box{
+    height: 30vh;
+    width: 30vw;
+    justify-self: center;
+    margin-top: 20px;
+    font-size: 2.2em;
+}
+
+.type-character-div{
+    margin: 30px 0;
+    display: grid;
+    grid-template-columns: 30px 30px 30px 30px 30px 30px 30px 30px;
+    justify-content: center;
+}
+
+.type-checkAnswers{
+    height: 10vh;
+    width: 10vw;
+    border-radius: 12px;
+    justify-self: center;
+}

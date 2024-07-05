@@ -1,0 +1,67 @@
+
+/* Styling for heading */
+.instruction {
+    text-align: center;
+    color: green;
+}
+ 
+
+/* Styling for Boxes */
+
+.answers{
+    align-self: center;
+}
+
+.box{
+    border: 2px solid #333;
+    
+    border-radius: 1em;
+}
+
+.answers{
+    margin: 2em;
+    padding: 10px;
+    margin: 10px;
+    width: 18em;
+    height: 5em;
+}
+
+.store{
+    align-self: center;
+    padding: 10px;
+    margin: 10px;
+    width: 250px;
+    height: 13em;
+}
+
+.block-container {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+}
+ 
+/* Styling for List Items */
+.block-ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    margin: 0.5em;
+}
+ 
+.block-list {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 0.2em 0.6em;
+    margin: 1em ;
+
+    cursor: pointer;
+}
+
+li:hover {
+    background-color: #e0e0e0;
+}
+
+.submit-block{
+    border-radius: 2px;
+    border: 1em green;
+}
