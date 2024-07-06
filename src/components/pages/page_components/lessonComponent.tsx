@@ -1,11 +1,11 @@
 import '../../styles/lesson.css'
 import { Link, useNavigate } from 'react-router-dom'
 
-const LessonComponent = (props:{lesson: any, value: any, clickHandler: any, id: number}) => {
+const LessonComponent = (props:{lesson: any, value: any, clickHandler: any, id: number, complete: any}) => {
   const percentage = 60
   const navigate = useNavigate()
   return (
-    <div onClick={props.clickHandler} id={String(props.id)} className={`lesson ${props.value}`} >
+    <div style={props.complete ? {backgroundColor:'rgba(0, 175, 80, 0.8)'}: {}} onClick={props.clickHandler} id={`${String(props.id)}`} className={`lesson ${props.value}`} >
         <h2 className="title">{props.lesson.lessonName}</h2>
         <h3 className="description">{props.lesson.lessonDescription}</h3>
 
@@ -21,12 +21,12 @@ const LessonComponent = (props:{lesson: any, value: any, clickHandler: any, id: 
             />
 
             <text x="50%" y="50%" dy='0.3em' className='circle-text' textAnchor='middle'>
-              50 words
+              {props.lesson.phrase.length} words
             </text>
             
         </svg>
 
-        <button onClick={()=>{navigate(`/lesson/unit/${props.lesson.unit}/level/${props.lesson.id}`)}} className="play-button">Start Lesson</button>
+        <button onClick={()=>{navigate(`/lesson/unit/${props.lesson.unit}/level/${props.lesson.id}`)}} className="play-button">{props.complete ? 'Restart Lesson': 'Start Lesson'}</button>
     </div>
   )
 }

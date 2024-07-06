@@ -2,6 +2,7 @@
 
 import { useContext } from "react"
 import MyContext from "../../context/Context"
+import './multipleChoice.css'
 
 const multipleChoice = ({phrase}: {phrase: any}) => {
   let choices: any = [...phrase.relatedPhrases, phrase]
@@ -22,13 +23,15 @@ const multipleChoice = ({phrase}: {phrase: any}) => {
 
   return (
     <div>
-      <h1>Choose the right answer</h1>
-      <h3>What is {phrase.phraseTranslation} in yoruba</h3>
-      {choices.slice(0, 4).map((choice:any)=>{
-        return <button key={choice.id} value={choice.text} onClick={handleChoice} className={`multi-choice ${choice.id}`}>
-          {choice.text}
-        </button>
-      })}
+      <p className="mcq-prompt">Choose the right answer</p>
+      <h1 className="mcq-question">What is {phrase.phraseTranslation} in yoruba</h1>
+      <section className="multi-choice-container">
+        {choices.slice(0, 4).map((choice:any)=>{
+          return <button key={choice.id} value={choice.text} onClick={handleChoice} className={`multi-choice ${choice.id}`}>
+            {choice.text}
+          </button>
+        })}
+      </section>
     </div>
   )
 }

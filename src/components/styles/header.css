@@ -1,9 +1,9 @@
 .header-container {
-  height: 4vw;
+  height: 50px;
   width: 100%;
   border-radius: 50;
   border-bottom: solid 1px;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   margin: 50;
   padding: 0.3em;
   padding-left: 0.8em;
@@ -15,18 +15,19 @@
   position: sticky;
   position: -webkit-sticky;
   top: 0;
+  opacity: 100%;
 }
 
 .filler {
   height: 100%;
   border-radius: inherit;
-  text-align: right
+  text-align: right;
 }
 
 .label {
   padding: 5;
   color: black;
-  font-weight: bold
+  font-weight: bold;
 }
 
 .left{

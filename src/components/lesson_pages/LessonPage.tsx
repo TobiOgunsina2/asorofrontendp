@@ -1,15 +1,18 @@
 import { useContext, useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import lessonComponents from '../lesson_types/importComponents'
 import LessonComplete from './LessonComplete'
 import api from '../../context/api'
 import MyContext from '../../context/Context'
+import './lessonPage.css'
+
 
 const LessonPage = () => {
   const [slides, setSlides] = useState<any>([])
   const [slideNumber, setSlideNumber] = useState(0)
   const {userHasAnswered, setUserHasAnswered} = useContext(MyContext)
   const {answers} = useContext(MyContext)
+  const [progress, setProgress] = useState(0)
   
   const { uid } = useParams()
   const { lid } = useParams()
@@ -106,15 +109,25 @@ const LessonPage = () => {
   const changeLessonComponent = () => {
     setSlideNumber(slideNumber+1)
     setUserHasAnswered({answered:false, answeredRight: null})
+    setProgress((slideNumber+2)/slides.length)
   }
 
+  const navigate = useNavigate()
+
   return (
-    <div>
-      <progress></progress>
-      <Link to={'/learn'}><button>X</button></Link>
+    <div className='lesson-page'>
+      <header className='lesson-header'>
+        <div className="progress-bar">
+          <div className="progress-bar-fill" style={{width: `${progress*100}%`}}></div>
+        </div>
+        
+        <svg onClick={()=>navigate('/learn')} xmlns="http://www.w3.org/2000/svg" fill="black" width="2.3vw" height="2.3vw" viewBox="-3.5 0 19 19" className="cf-icon-svg"><path d="M11.383 13.644A1.03 1.03 0 0 1 9.928 15.1L6 11.172 2.072 15.1a1.03 1.03 0 1 1-1.455-1.456l3.928-3.928L.617 5.79a1.03 1.03 0 1 1 1.455-1.456L6 8.261l3.928-3.928a1.03 1.03 0 0 1 1.455 1.456L7.455 9.716z"/></svg>
+
+      </header>
       
       {slides[slideNumber]}
 
+    
       {(slideNumber<slides.length-1 && userHasAnswered.answered && userHasAnswered.answeredRight)
       ? 
       <footer className="lesson-footer correct">

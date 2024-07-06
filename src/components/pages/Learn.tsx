@@ -19,13 +19,10 @@ const Learn = () => {
   const [isLoading, setIsLoading] = useState(false)
   
   const completed = profile.progressData.lessons.map((lesson: any)=>{
-    console.log(lesson)
-    if(lesson.completed){
-      return lesson.lesson
-    } 
+    if(lesson.completed){return lesson.lesson} 
   })
-
-  console.log(completed, profile.progressData.lessons)
+  
+  // Make units highlighted on scroll
 
 
   useEffect(()=>{
@@ -51,21 +48,22 @@ const Learn = () => {
     api
       .get("/api/units/")
       .then((res) => res.data)
-      .then((data)=> 
-        {
+      .then((data)=> {
           setUnits(data)
-        })
+      })
       .catch((err)=> console.log(err))
   }
-  const unitList = units.map((unit: unitType, index, arr)=> {
-    if(index>0 && completed.includes(units[index-1].lessons[units[index-1].lessons.length-1].id)){
-      console.log(units[index-1].lessons[units[index-1].lessons.length-1].id)
-      return <Unit key={unit.id} available={true} unitDescription={unit.unitDescription} unitName={unit.unitName} lessons={unit.lessons}/>
+  const unitList = units.map((unit: unitType, index)=> {
+    
+    if(index>0){
+      if(completed.includes(units[index-1].lessons[units[index-1].lessons.length-1].id)){
+      return <Unit key={unit.id} available={true} completedLessons={completed} unitDescription={unit.unitDescription} unitName={unit.unitName} lessons={unit.lessons}/>  
+      }
     }
     else if(index==0){
-      return <Unit key={unit.id} available={true} unitDescription={unit.unitDescription} unitName={unit.unitName} lessons={unit.lessons}/>
+      return <Unit key={unit.id} available={true} completedLessons={completed} unitDescription={unit.unitDescription} unitName={unit.unitName} lessons={unit.lessons}/>
     }
-    return <Unit key={unit.id} available={false} unitDescription={unit.unitDescription} unitName={unit.unitName} lessons={unit.lessons}/>
+    return <Unit key={unit.id} available={false} completedLessons={completed} unitDescription={unit.unitDescription} unitName={unit.unitName} lessons={unit.lessons}/>
 
 
   })

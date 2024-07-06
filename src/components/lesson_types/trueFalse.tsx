@@ -1,4 +1,5 @@
 // import React from 'react'
+import './trueFalse.css'
 
 import { useContext, useEffect, useState } from "react"
 import api from "../../context/api"
@@ -43,8 +44,8 @@ const trueFalse = ({phrase}: {phrase: any}) => {
   
 
   return (
-    <div>
-      <div className="question">Does <span className="inText">{phrase.text}</span> mean <span className="inText">{questionAnswer}</span></div>
+    <div className='true-false'>
+      <div className="question"><h1>Does <span className="inText yoruba">{phrase.text}</span> mean <span className="inText english">{questionAnswer}</span></h1></div>
       <button className="true" onClick={handleClick}>True</button>
       <button className="false" onClick={handleClick}>False</button>
     </div>
