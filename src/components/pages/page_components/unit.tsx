@@ -1,23 +1,31 @@
 import LessonComponent from "./lessonComponent"
 import '../../styles/unit.css'
-import { useEffect, useState } from "react"
+import React,{ useEffect, useState } from "react"
 import ProgressBar from "./progressBar"
 
 
-const Unit = (props: {unitName: String, unitDescription: String, lessons: any[], available: boolean, completedLessons: []}) => {
+const Unit = (props: {id: string, unitName: String, unitDescription: String, lessons: any[], available: boolean, completedLessons: any[]}) => {
   const {unitName, unitDescription, lessons} = props
   const [isActive, setisActive] = useState(new Array(lessons.length))
   const [currentWidth, setCurrentWidth] = useState(0)
+  const [unitProgress, setUnitProgress] = useState(0)
   const {completedLessons} = props
 
   useEffect(()=>{
     const temp = Array.from(''.repeat(isActive.length))
     temp[0] = 'active'
     setisActive(temp)
+    let toSettoProgress = 0
+    for (let i in lessons){
+      if(completedLessons.includes(lessons[i].id)){
+        toSettoProgress+=1
+      }
+    }
+    setUnitProgress(toSettoProgress)
   }, [])
 
 
-  const scrollHandler = (e:any) =>{
+  const scrollHandler = (e: any) =>{
     var atSnappingPoint = e.target.scrollLeft % e.target.offsetWidth === 0;
     var timeOut         = atSnappingPoint ? 0 : 150; //see notes
 
@@ -32,6 +40,7 @@ const Unit = (props: {unitName: String, unitDescription: String, lessons: any[],
       const temp = Array.from(''.repeat(lessons.length))
       temp[2] = 'active'
       setisActive(temp)
+      console.log(e.target.scrollLeft)
       atSnappingPoint=true
     }
     if (e.target.scrollLeft-currentWidth>470){
@@ -58,17 +67,15 @@ const Unit = (props: {unitName: String, unitDescription: String, lessons: any[],
   }
 
   const clickLesson = (e: any)=>{
-    console.log(isActive)
     const temp = Array.from(''.repeat(lessons.length))
     temp[Number(e.target.id)] = 'active'
-    console.log(temp, e.target.id)
     setisActive(temp)
   }
   
   return (
-      <div className='unit' style={!props.available ?{backgroundColor:'gray', filter: 'opacity(0.8)', pointerEvents:'none'}: {}}>
-        <ProgressBar bgcolor="rgb(0, 200, 100)" progress="10" height={17}/>
-        <h2>{unitName}</h2>
+      <div className='unit' id={props.id} style={!props.available ?{backgroundColor:'gray', filter: 'opacity(0.8)', pointerEvents:'none'}: {}}>
+        <h2 className="unit-title">{unitName}</h2>
+        <ProgressBar bgcolor="rgb(0, 200, 100)" progress={String(Math.round((unitProgress/lessons.length)*100))} height={17}/>
         <div onScroll={scrollHandler} className="lessons">
           {lessons.map((lesson, index)=>{
             return <LessonComponent complete={completedLessons.includes(lesson.id)} clickHandler={clickLesson} key={lesson.id} id={index} value={props.available ?isActive[index]: ''} lesson={lesson}/>

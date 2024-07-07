@@ -1,9 +1,11 @@
 
 .lesson{
-    flex: 1 0 auto;
+    
     width: 17vw;
-    padding: 1vw;
-    background-color: rgb(184, 184, 184);
+    flex: 1 0 auto;
+    padding: 0 1vw;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
     height: 12rem;
     margin: 0.2rem;
     overflow: hidden;
@@ -13,17 +15,45 @@
     scroll-snap-align: start;
     scroll-snap-stop: always;
     scroll-snap-align: end;
+    color: black;
+}
+
+
+.lesson-img{
+    border: 1px solid;
+    border-radius: 5px;
+    width: 11em;
+    height: 11em;
+    transition: text 4s ease-in; 
+
+}
+
+.lesson:not(.active) .lesson-img{
+    display: none;
 }
 
 .active{
     flex-grow: 1;
     width: 37vw;
-    background-color: rgb(73, 226, 250);
+    flex: 1 0 auto;
 }
 
-.active:hover{
-    background-color: rgb(59, 202, 224);
+.lesson-about{
 }
+
+/*
+.lesson:nth-child(3n+1){
+    background-color: #00a779;
+}
+.lesson:nth-child(2n){
+    background-color: #ff5c53;
+}
+
+.lesson:nth-child(3n){
+    background-color: #01a6c4;
+}
+*/
+
 
 
 .lesson:not(.active):not(:last-child):hover{
@@ -74,6 +104,6 @@
 }
 
 .circle-text{
-    font-size: 8px;
+    font-size: 30px;
     font-weight: bold;
 }

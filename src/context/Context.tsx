@@ -20,6 +20,7 @@ export const MyContextProvider: FC<{children: ReactNode}> = ({children}) =>{
     const [user, setUser] = useState(0)
     const [next, setNext] = useState(0)
     
+    
     return(
         <MyContext.Provider value={{userHasAnswered: userHasAnswered, setUserHasAnswered: setUserHasAnswered, answers: answers, setAnswers: setAnswers, user: user, setUser: setUser, next: next, setNext: setNext}}>
             {children}

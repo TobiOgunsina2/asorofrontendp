@@ -57,13 +57,13 @@ const Learn = () => {
     
     if(index>0){
       if(completed.includes(units[index-1].lessons[units[index-1].lessons.length-1].id)){
-      return <Unit key={unit.id} available={true} completedLessons={completed} unitDescription={unit.unitDescription} unitName={unit.unitName} lessons={unit.lessons}/>  
+      return <Unit key={unit.id} id={`unit${unit.id}`} available={true} completedLessons={completed} unitDescription={unit.unitDescription} unitName={unit.unitName} lessons={unit.lessons}/>  
       }
     }
     else if(index==0){
-      return <Unit key={unit.id} available={true} completedLessons={completed} unitDescription={unit.unitDescription} unitName={unit.unitName} lessons={unit.lessons}/>
+      return <Unit key={unit.id} id={`unit${unit.id}`} available={true} completedLessons={completed} unitDescription={unit.unitDescription} unitName={unit.unitName} lessons={unit.lessons}/>
     }
-    return <Unit key={unit.id} available={false} completedLessons={completed} unitDescription={unit.unitDescription} unitName={unit.unitName} lessons={unit.lessons}/>
+    return <Unit key={unit.id} id={`unit${unit.id}`} available={false} completedLessons={completed} unitDescription={unit.unitDescription} unitName={unit.unitName} lessons={unit.lessons}/>
 
 
   })
