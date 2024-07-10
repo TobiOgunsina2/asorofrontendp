@@ -60,7 +60,7 @@ const Review = () => {
                 <h1>Review</h1>
                 <div className="top-review">
                     <p>Word List</p>
-                    <Link to='/review/learn' state={{state: {data: [...data]}}}><button>Start</button></Link>
+                    <Link to='/review/learn' className='start-review' state={{state: {data: [...data]}}}><button>Start</button></Link>
                     <input type="text" onChange={(e) => onTypeSearch(e)} placeholder="Search.."></input>
                 </div>
                 <table className='review-table'>

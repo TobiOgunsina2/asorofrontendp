@@ -18,3 +18,19 @@
     margin: 0 auto;
     justify-content: space-evenly;
 }
+
+.start-review{
+    width: 30%;
+    height: 100%;
+}
+
+.start-review button{
+    width: 100%;
+    height: 3em;
+    border-radius: 6px;
+    border: 1px solid rgb(220, 220, 220);
+}
+
+.start-review button:hover{
+    background-color: aliceblue;
+}
