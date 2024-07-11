@@ -1,12 +1,13 @@
 .lesson{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     width: 17vw;
     flex: 1 0 auto;
-    padding: 0 0.3vw;
+    padding: 0 1vw;
+    padding-right: 3vw;
     align-items: center;
     background-color: rgb(239, 229, 229);
-    height: 13rem;
+    height: 14.3rem;
     margin: 0.2rem;
     border-radius: 30px;
     overflow-x: hidden;
@@ -19,16 +20,30 @@
 }
 
 .lesson-about{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
     text-align: left;
+    height: 100%;
+    padding-top: 5%;
+}
+
+.active .lesson-about{
+    width: 45%;
 }
 
 .lesson-img{
-    outline: 4px solid rgb(46, 209, 13);
     border: 1px solid;
-    border-radius: 100%;
-    width: 8em;
-    height: 8em;
-    margin-right: 5px;
+    border-radius: 20px;
+    width: 13em;
+    height: 11em;
+    margin-left: 7px;
+    margin-right: 4px;
+}
+
+.complete .lesson-img{
+    outline: 4px solid rgb(46, 209, 13);
+    outline-offset: 3px;
 }
 
 
@@ -40,10 +55,15 @@
     width: 37vw;
     flex: 1 0 auto;
     box-shadow: 3px 3px 3px gray;
+    background-color: #00a779;
 }
 
 .lesson:not(.active):not(:last-child):hover{
     background-color: rgb(104, 205, 223);
+}
+
+.lesson:not(.active){
+    background-color: #01a6c4; /*#01a6c4*/
 }
 
 .active h2{
@@ -68,6 +88,9 @@
     color: white;
     border-radius: 15px;
     padding: 0.5em 1em;
+    margin-top: 2em;
+    width: 9.4em;
+    height: 2.5em;
     font-weight: bold;
 }
 
@@ -78,6 +101,7 @@
 
 .lesson:not(.active) .play-button, .lesson:not(.active) svg, .lesson:not(.active) h3{
     visibility: hidden;
+    display: none;
 }
 
 .lesson:not(.active) h2{
@@ -85,13 +109,9 @@
     color: white;
 }
 
-.lesson:nth-child(3n+1){
+/*.lesson:nth-child(3n+1){
     background-color: #00a779;
 }
 .lesson:nth-child(2n){
     background-color: #ff5c53;
-}
-
-.lesson:nth-child(3n){
-    background-color: #01a6c4;
-}
+}*/

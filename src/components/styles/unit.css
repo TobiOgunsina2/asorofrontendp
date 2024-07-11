@@ -5,7 +5,7 @@
     margin-bottom: 2em;
     padding: 1em;
     width: 60vw;
-    height: 21.4rem;
+    height: 23.4rem;
 }
 
 
@@ -33,6 +33,10 @@
 
 .unit h2.unit-title {
     margin-top: 0;
+    text-align: left;
+    margin-left: 6.4vw;
+    font-size: 1.5em;
+    margin-bottom: 0;
 }
 
 

@@ -79,7 +79,7 @@ const Learn = () => {
         <div className="main">
           <Header streak={profile.progressData.streak} bgColor={"23"} completed={false}/>
           <div className="content">
-            <h1 className='yoruba'>Learn Yoruba</h1>
+            <h1 className='' style={{visibility: 'hidden'}}>l</h1>
             <div className="unit-list">
               {unitList}
             </div>

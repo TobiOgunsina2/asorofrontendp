@@ -2,7 +2,7 @@
   height: 50px;
   width: 100%;
   border-radius: 50;
-  border-bottom: solid 1px;
+  /*border-bottom: solid 1px;*/
   background-color: rgb(255, 255, 255);
   margin: 50;
   padding: 0.3em;
@@ -18,15 +18,11 @@
   z-index: 100;
 }
 
-.filler {
-  height: 100%;
-  border-radius: inherit;
-  text-align: right;
-}
 
 .label {
   padding: 5;
   color: black;
+
   font-weight: bold;
 }
 
@@ -37,6 +33,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 5%;
+  font-weight: bold;
   font-size: 1.1em;
 }
 
@@ -44,11 +41,13 @@
   display: flex;
   justify-self: right;
   justify-content: space-evenly;
-  gap: 1em;
+  gap: 2em;
+  font-size: 0.8em;
 }
 
 .streak {
-  color: orange;
+  color: rgb(255, 115, 0);
+  margin-bottom: 1em;
 }
 
 .flag{
@@ -62,10 +61,10 @@
 .help-link{
   color: black;
   text-decoration: none;
+  font-weight: 500;
 }
 
 .help-link:hover{
   color: blue;
-  
 }
 

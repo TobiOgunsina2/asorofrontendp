@@ -4,6 +4,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+    gap: 15px;
     position: sticky;
     position: -webkit-sticky;
     top: 0;
@@ -14,9 +15,23 @@
     padding-right: 0.2em;
 }
 
-.sidebar p{
-    padding: 2%
+.logo{
+    margin-bottom: 12px;
+    font-size: 3em;
 }
+
+.logo-text {
+    margin: 0;
+    color: rgb(53, 116, 53);
+
+}
+
+.sidebar p:not(.logo-text){
+    padding: 2%;
+    color: rgb(22, 75, 108);
+
+}
+
 .sidebar .sidebar-link{
     text-decoration: none;
     font-weight: bolder;
@@ -28,4 +43,9 @@
     background-color: rgb(180, 180, 180);
 }
 
+.sidebar svg{
+    margin-right: 4px;
+    position: relative;
+    top: 3px;
+}
 
