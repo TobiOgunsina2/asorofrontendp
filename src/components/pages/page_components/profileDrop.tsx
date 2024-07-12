@@ -1,12 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import '../../styles/profile.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
-const profileDrop = () => {
+const profileDrop = (props: {shortened: string}) => {
   const logout = () => {
     localStorage.removeItem('access')
     localStorage.removeItem('refresh')
+    nav('/')
   }
 
   const [dropdownToggle, setDropDownToggle] = useState(false)
@@ -17,7 +18,7 @@ const profileDrop = () => {
   }
 
   const handleClickOutside = (e: any)=> {
-    if (dropdownRef.current && !dropdownRef.current.contains(e.targer)){
+    if (dropdownRef.current && !dropdownRef.current.contains(e.target)){
       setDropDownToggle(false)
     }
   }
@@ -27,17 +28,18 @@ const profileDrop = () => {
 
     return ()=>document.removeEventListener('mousedown', handleClickOutside)
   }, [])
+  const nav = useNavigate()
 
   return (
     <div className='menu-container' ref = {dropdownRef}>
-      <button className='user-profile' onClick={handleDropDownToggle}>HA</button>
+      <button className='user-profile' onClick={handleDropDownToggle}>{props.shortened}</button>
       <div className={`custom-profile-dropdown ${dropdownToggle ?'profile-active' : ''} `}>
         <div className="menu-items-div">
           <div className="menu-item">
             <Link className='menu-item-link' to="/profile">Profile</Link>
           </div>
-          <div className="menu-item logout">
-            <Link className='menu-item-link logout-link' onClick={logout} to="/">Logout</Link>
+          <div onClick={logout} className="menu-item logout">
+            <p className='logout-p'>Logout</p>
           </div>
         </div>
       </div>

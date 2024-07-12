@@ -1,7 +1,7 @@
 // import React from 'react'
 import './trueFalse.css'
 
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import api from "../../context/api"
 import MyContext from "../../context/Context"
 
@@ -10,6 +10,8 @@ const trueFalse = ({phrase}: {phrase: any}) => {
   let {setUserHasAnswered} = useContext(MyContext)
   const {answers, setAnswers} = useContext(MyContext)
 
+  const trueButton = useRef<any>() 
+  const falseButton = useRef<any>()
   
 
   useEffect(()=>{
@@ -31,9 +33,17 @@ const trueFalse = ({phrase}: {phrase: any}) => {
   
   const handleClick = (e: any) => {
     if ((phrase.phraseTranslation===questionAnswer).toString()===e.target.className) {
+      if (e.target.className=='true'){
+        console.log(trueButton.current.style)
+        trueButton.current.style.border = '1.3px solid rgb(26, 222, 85)'
+        trueButton.current.style.outline = 'none'
+      }
+      else{
+        console.log(trueButton.current.style.borderColor)
+        falseButton.current.border = '1.3px solid rgb(26, 222, 85)'
+      }
       setUserHasAnswered({answered:true, answeredRight: true})
       setAnswers({...answers, phrases: [...answers.phrases, phrase.id]})
-      console.log(answers)
     }
     else{
       setUserHasAnswered({answered:true, answeredRight: false})
@@ -46,8 +56,8 @@ const trueFalse = ({phrase}: {phrase: any}) => {
   return (
     <div className='true-false'>
       <div className="question"><h1>Does <span className="inText yoruba">{phrase.text}</span> mean <span className="inText english">{questionAnswer}</span></h1></div>
-      <button className="true" onClick={handleClick}>True</button>
-      <button className="false" onClick={handleClick}>False</button>
+      <button ref={trueButton} className="true" onClick={handleClick}>True</button>
+      <button ref={falseButton} className="false" onClick={handleClick}>False</button>
     </div>
   )
 }

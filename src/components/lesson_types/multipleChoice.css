@@ -29,3 +29,12 @@
     font-size: 1.2em ;
     margin-top: 5vw;
 }
+
+.inText.english{
+    color: rgb(54, 157, 212);
+}
+
+.question-answered{
+    filter: hue-rotate(20deg) opacity(0.8);
+    pointer-events: none;
+}

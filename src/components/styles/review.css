@@ -1,9 +1,26 @@
+.review-h1{
+    color: rgb(116, 179, 206);
+}
+
 .review-table{
     table-layout: fixed;
     width: 80%;
     border-collapse: collapse;
+    border-radius: 10px;
     margin: 0 auto;
+    background-color: rgb(98, 191, 139);
     margin-bottom: 40px;
+    color: rgb(255, 255, 255);
+}
+
+.word-list{
+    font-weight: 700;
+    font-size: 20px;
+    margin: 0;
+}
+
+.review-left{
+    display: flex;
 }
 
 .users-table-cell {
@@ -15,22 +32,39 @@
 .top-review{
     display: flex;
     width: 80%;
-    margin: 0 auto;
-    justify-content: space-evenly;
+    margin: 10px auto;
+    justify-content: space-between;
 }
 
-.start-review{
-    width: 30%;
+.play-review{
     height: 100%;
+    margin-left: 10px;
 }
 
-.start-review button{
-    width: 100%;
-    height: 3em;
-    border-radius: 6px;
+.play-review button{
+    width: 5em;
+    height: 2em;
+    border-radius: 30px;
     border: 1px solid rgb(220, 220, 220);
 }
 
-.start-review button:hover{
+.play-review button:hover{
     background-color: aliceblue;
+}
+
+.review-search{
+    height: 36px;
+    width: 34%;
+    border-radius: 3px;
+    border: solid 1px rgb(114, 114, 114);
+}
+
+thead{
+    font-size: 1.2em;
+    color: rgb(234, 234, 234);
+}
+
+tbody{
+    font-weight: 400;
+    font-size: 1.2em;
 }

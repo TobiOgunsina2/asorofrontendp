@@ -1,3 +1,14 @@
+.question h1{
+    margin-bottom: 13vh;
+    margin-top: 8vh;
+    font-size: 1.6em;
+}
+
+.question h1 .yoruba{
+    text-decoration: solid underline green;
+    color: green;
+}
+
 .true-false{
     padding: 2em;
 }
@@ -12,19 +23,9 @@
     font-weight: bold;
     outline: solid 1px rgb(0, 191, 255);
     background-color: rgb(251, 255, 255);
+    transition: border 0.5s ease-in;    
 }
 
 .true:hover, .false:hover{
-    background-color: rgb(95, 215, 255);
-}
-
-.question h1{
-    margin-bottom: 13vh;
-    margin-top: 15vh;
-    font-size: 1.4em;
-}
-
-.question h1 .yoruba{
-    text-decoration: solid underline green;
-    color: green;
+    background-color: rgb(205, 243, 255);
 }

@@ -1,9 +1,9 @@
 .header-container {
-  height: 50px;
+  height: 60px;
   width: 100%;
   border-radius: 50;
   /*border-bottom: solid 1px;*/
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(250, 250, 250);
   margin: 50;
   padding: 0.3em;
   padding-left: 0.8em;
@@ -66,5 +66,17 @@
 
 .help-link:hover{
   color: blue;
+}
+
+
+.yoruba-header{
+  color: rgb(98, 98, 98);
+  font-size: 1.2em;
+  position: relative;
+  left: 90px;
+}
+
+.progress{
+  margin-top: 9.5px;
 }
 

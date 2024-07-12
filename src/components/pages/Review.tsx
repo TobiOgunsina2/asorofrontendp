@@ -41,9 +41,6 @@ const Review = () => {
             .toLowerCase()
             .includes(searchedVal.toString().toLowerCase()) 
             ))
-    
-    
-        
     }
 
     return (
@@ -55,13 +52,15 @@ const Review = () => {
             <Sidebar/>
         </div>
             <div className="main">
-            <Header streak={1} bgColor={"23"} completed={false}/>
+            <Header streak={1} fullProgress={Number(localStorage.getItem('fullProgress'))} shortened={String(localStorage.getItem('shortened'))}/>
             <div className="review-content">
-                <h1>Review</h1>
+                <h1 className='review-h1'>Review</h1>
                 <div className="top-review">
-                    <p>Word List</p>
-                    <Link to='/review/learn' className='start-review' state={{state: {data: [...data]}}}><button>Start</button></Link>
-                    <input type="text" onChange={(e) => onTypeSearch(e)} placeholder="Search.."></input>
+                    <div className="review-left">
+                        <p className='word-list'>Word List</p>
+                        <Link to='/review/learn' className='play-review' state={{state: {data: [...data]}}}><button>Start</button></Link>
+                    </div>
+                    <input type="text" className='review-search' onChange={(e) => onTypeSearch(e)} placeholder="Search.."></input>
                 </div>
                 <table className='review-table'>
                     <thead>

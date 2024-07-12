@@ -24,7 +24,7 @@ const multipleChoice = ({phrase}: {phrase: any}) => {
   return (
     <div>
       <p className="mcq-prompt">Choose the right answer</p>
-      <h1 className="mcq-question">What is {phrase.phraseTranslation} in yoruba</h1>
+      <h1 className="mcq-question">What is <span className="inText english">{phrase.phraseTranslation}</span> in Yoruba</h1>
       <section className="multi-choice-container">
         {choices.slice(0, 4).map((choice:any)=>{
           return <button key={choice.id} value={choice.text} onClick={handleChoice} className={`multi-choice ${choice.id}`}>

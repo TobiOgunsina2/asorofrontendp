@@ -19,13 +19,14 @@ const LessonComplete = (props: {lesson?: Number | 800}) => {
     <div>
       <h1>Lesson Complete</h1>
       <div className="bronze-points">
-        <p>Bronze</p>
+        <p>Progress</p>
         <p>+10</p>
       </div>
       <div className="score">
         <p>Score</p>
         <p>100%</p>
       </div>
+      
       <footer className="lesson-footer">
         <Link to={`/learn`}><button>Continue</button></Link>
       </footer>

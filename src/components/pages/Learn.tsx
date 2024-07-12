@@ -39,7 +39,8 @@ const Learn = () => {
       .then((data)=> 
         {
           setProfile(data)
-          
+          localStorage.setItem('fullProgress', String(Number(completed.length*100/7).toPrecision(2)))
+          localStorage.setItem('shortened', profile.userData.shortened_user)
         })
       .catch((err)=> console.log(err))
   }
@@ -77,9 +78,9 @@ const Learn = () => {
           <Sidebar/>
         </div>
         <div className="main">
-          <Header streak={profile.progressData.streak} bgColor={"23"} completed={false}/>
+          <Header fullProgress={Number(Number(completed.length*100/7).toPrecision(2))} shortened={profile.userData.shortened_user}  streak={profile.progressData.streak}/>
           <div className="content">
-            <h1 className='' style={{visibility: 'hidden'}}>l</h1>
+            <h1 className='head-h1' style={{visibility: 'hidden'}}>l</h1>
             <div className="unit-list">
               {unitList}
             </div>

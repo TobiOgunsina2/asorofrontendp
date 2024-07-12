@@ -1,6 +1,6 @@
 .menu-container{
     position: relative;
-    top: 9px;
+    top: 10px;
 }
 
 .user-profile{
@@ -14,7 +14,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(4, 189, 124);
+    background-color: rgb(170, 77, 75);
     color: white;
     font-weight: 600;
 }
@@ -22,7 +22,7 @@
 .menu-container .custom-profile-dropdown{
     width: 8vw;
     position: absolute;
-    top: 7.7vh;
+    top: 50px;
     right: 0vw;
     padding: 0 4px;
     box-sizing: 0 5px 25px rgb(0 0 0 /10%);
@@ -56,6 +56,10 @@
     border-left: 1px solid none;
 }
 
+.custom-profile-dropdown{
+    top: 13px;
+}
+
 .custom-profile-dropdown .menu-name{
     text-align: center;
     width: 100%;
@@ -83,7 +87,8 @@
 }
 
 .menu-item-link:hover{
-    color: rgb(61, 61, 255)
+    color: rgb(61, 61, 255);
+    font-weight: 500;
 }
 
 .logout{
@@ -91,10 +96,17 @@
     border-top: 1px grey solid;
 }
 
-.logout-link{
+
+.logout-p{
     color: rgb(245, 90, 90);
+    margin: 0;
+    padding: 0;
 }
 
-.logout-link:hover{
-    color: rgb(252, 30, 30);
+.logout-p:hover{
+    transition: all 0.2s ease-in;
+    background-color: rgba(246, 42, 42, 0.7);
+    color: white;
+    border-end-start-radius: 5px;
+    border-end-end-radius: 5px;
 }

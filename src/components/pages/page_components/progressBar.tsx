@@ -1,5 +1,5 @@
-import '../../styles/progressBar.css'
 import React from 'react'
+import '../../styles/progressBar.css'
 
 const ProgressBar = (props: {bgcolor: string,progress: string,height: number}) => {
   const {bgcolor, progress, height} = props  
@@ -22,15 +22,17 @@ const ProgressBar = (props: {bgcolor: string,progress: string,height: number}) =
      
       const progresstext = {
         padding: 10,
-        color: 'black',
-        fontWeight: 900,
-        fontSize: '0.9vw'
-      }
+        color: 'white',
+        fontWeight: 700,
+        fontSize: '0.9vw',
+        position: 'relative',
+        bottom: '2px'
+      } as React.CSSProperties
        
   return (
-    <div style={Parentdiv}>
+    <div className="progress-bar" style={Parentdiv}>
       <div style={Childdiv}>
-        <span style={progresstext}>{`${progress}%`}</span>
+        <span className="progress-number" style={progresstext}>{`${progress}%`}</span>
       </div>
     </div>
   )
