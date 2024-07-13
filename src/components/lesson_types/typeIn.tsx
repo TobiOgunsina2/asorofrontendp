@@ -1,40 +1,39 @@
 // import React from 'react'
 
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import MyContext from "../../context/Context"
 import './typeIn.css'
 
 const TypeIn = ({phrase}: {phrase:any}) => {
   const {userHasAnswered, setUserHasAnswered} = useContext(MyContext)
-
+  const [inputValue, setInputValue] = useState('');
 
   const checkAnswers = () =>{
     setUserHasAnswered({answered:true, answeredRight: true})
   }
-  const [inputValue, setInputValue] = useState('');
 
   const handleButtonClick = (char: any) => {
     setInputValue((prevValue) => prevValue + char);
   };
 
   const handleChange = (event: any) => {
-    setInputValue(event.target.value);
+    let temp = inputValue.split('')
+    
+    temp[Number(event.target.id)] = event.target.value 
+    setInputValue(temp.join(''));
+    console.log(inputValue)
   };
 
 
   const yorubaCharacters = ['á','à', 'é', 'è','ẹ', 'ẹ́','ẹ̀', 'í','ì', 'ó', 'ò','ọ','ọ́', 'ọ̀','ú', 'ù','ṣ', 'ń',];
-
   return (
-    <div className="typeIn">
-      <label htmlFor="yoruba-input">Type <span>{phrase.phraseTranslation}</span> in Yoruba:</label>
-      <input
-        id="yoruba-input"
-        type="text"
-        value={inputValue}
-        onChange={handleChange}
-        className="type-box"
-        placeholder="Type Yoruba here..."
-      />
+    <div className="typeIn-container">
+      <label htmlFor="yoruba-input" className="yoruba-input">Type <span className="inText english">{phrase.phraseTranslation}</span> in Yoruba:</label>
+      <div className="type-in-boxes">
+        {phrase.text.split('').map((l: any, index: number)=>{
+          return <div className={`typeIn-box ${l==' ' ? 'type-in-space': ''}`}>{l==' ' ? '': <input maxLength={1} id={String(index)} onChange={handleChange} value={inputValue[index]} className="typeIn-input" type="text" />}</div>
+        })}
+      </div>
       <div className="type-character-div">
         {yorubaCharacters.map((char) => (
           <button key={char} onClick={() => handleButtonClick(char)}>

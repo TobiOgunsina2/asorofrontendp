@@ -8,9 +8,8 @@
     border-collapse: collapse;
     border-radius: 10px;
     margin: 0 auto;
-    background-color: rgb(98, 191, 139);
     margin-bottom: 40px;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
 }
 
 .word-list{
@@ -46,6 +45,7 @@
     height: 2em;
     border-radius: 30px;
     border: 1px solid rgb(220, 220, 220);
+    background-color: rgb(6, 195, 91);
 }
 
 .play-review button:hover{
@@ -61,10 +61,23 @@
 
 thead{
     font-size: 1.2em;
-    color: rgb(234, 234, 234);
+    color: rgb(86, 86, 86);
 }
 
 tbody{
     font-weight: 400;
     font-size: 1.2em;
+}
+
+tbody tr:nth-child(even){
+    background-color: rgb(180, 237, 192);
+}
+
+tbody tr:nth-child(odd){
+    background-color: rgb(255, 255, 251);
+}
+
+
+td, th{
+    padding-left: 1vw;
 }

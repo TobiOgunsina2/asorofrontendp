@@ -1,27 +1,100 @@
-.typeIn{
+.typeIn-container{
     padding: 3em 10em;
     display: grid;
     justify-content: center;
 }
+
+.type-in-boxes{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+.typeIn-box{
+    border-bottom: 2px solid  gray;
+    border-radius: 2px;
+    margin: 1px;
+    width: 1.5em;
+}
+
+.type-in-space{
+    border: none;
+}
+
+.yoruba-input{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
 
 .type-box{
     height: 30vh;
     width: 30vw;
     justify-self: center;
     margin-top: 20px;
+    border-radius: 4px;
+    border: 3px solid rgb(150, 150, 150);
     font-size: 2.2em;
+}
+
+.typeIn-input{
+    width: 100%;
+    font-size: 1.2em;
+    text-align: center;
+    border: none;
+}
+
+.typeIn-input:focus{
+    outline: none;
+    border: none;
 }
 
 .type-character-div{
     margin: 30px 0;
-    display: grid;
-    grid-template-columns: 30px 30px 30px 30px 30px 30px 30px 30px;
+    display: flex;
     justify-content: center;
+    gap: 5px;
+    flex-wrap: wrap;
+    width: 30vw;
+    justify-self: center;
 }
 
 .type-checkAnswers{
-    height: 10vh;
+    height: 6vh;
     width: 10vw;
-    border-radius: 12px;
+    border-radius: 8px;
+    border: 1px solid grey;
+    background-color: rgb(67, 114, 154);
     justify-self: center;
+    color: white;
 }
+
+.type-checkAnswers:hover{
+    background-color: rgb(41, 118, 186);
+}
+
+.type-character-div button{
+    flex: 0 0 auto;
+    width: 3.2em;
+    background-color: rgb(99, 177, 99);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+}
+
+.type-character-div button:nth-child(3n+1){
+    flex: 0 0 auto;
+    width: 3em;
+}
+
+.type-character-div button:nth-child(5n+1){
+    flex: 0 0 auto;
+    width: 3.9em;
+}
+
+.type-character-div button:hover{
+    background-color: rgb(38, 141, 38);
+}
+

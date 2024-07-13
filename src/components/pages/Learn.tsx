@@ -21,6 +21,8 @@ const Learn = () => {
   const completed = profile.progressData.lessons.map((lesson: any)=>{
     if(lesson.completed){return lesson.lesson} 
   })
+  localStorage.setItem('fullProgress', String(Number(completed.length*100/7).toPrecision(2)))
+
   
   // Make units highlighted on scroll
 
@@ -39,7 +41,6 @@ const Learn = () => {
       .then((data)=> 
         {
           setProfile(data)
-          localStorage.setItem('fullProgress', String(Number(completed.length*100/7).toPrecision(2)))
           localStorage.setItem('shortened', profile.userData.shortened_user)
         })
       .catch((err)=> console.log(err))

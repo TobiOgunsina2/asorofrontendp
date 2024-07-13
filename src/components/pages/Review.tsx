@@ -74,7 +74,8 @@ const Review = () => {
                         {data.map((phrase: any, index: any)=>{
                             return (<tr key={index} className='users-table-cell'>
                                 <td>{phrase.text}</td>
-                                <td>{phrase.phraseTranslation}</td>
+                                <td>{phrase.phraseTranslation || phrase.sentenceTranslation}</td>
+                                <td>{'Level 1'}</td>
                             </tr>)
                         })}
                         

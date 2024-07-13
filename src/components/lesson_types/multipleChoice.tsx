@@ -1,13 +1,13 @@
 // import React from 'react'
 
-import { useContext } from "react"
+import { useContext, useRef } from "react"
 import MyContext from "../../context/Context"
 import './multipleChoice.css'
 
 const multipleChoice = ({phrase}: {phrase: any}) => {
   let choices: any = [...phrase.relatedPhrases, phrase]
   const {answers, setAnswers} = useContext(MyContext)
-  let {setUserHasAnswered} = useContext(MyContext)
+  let {userHasAnswered, setUserHasAnswered} = useContext(MyContext)
   
 
   const handleChoice = (e:any) => {
@@ -25,9 +25,10 @@ const multipleChoice = ({phrase}: {phrase: any}) => {
     <div>
       <p className="mcq-prompt">Choose the right answer</p>
       <h1 className="mcq-question">What is <span className="inText english">{phrase.phraseTranslation}</span> in Yoruba</h1>
-      <section className="multi-choice-container">
+      <section className={`multi-choice-container ${userHasAnswered.answered ? 'question-answered': ''}`}>
+
         {choices.slice(0, 4).map((choice:any)=>{
-          return <button key={choice.id} value={choice.text} onClick={handleChoice} className={`multi-choice ${choice.id}`}>
+          return <button key={choice.id} value={choice.text} onClick={handleChoice} className={`multi-choice ${choice.text==phrase.text && userHasAnswered.answeredRight ? 'correct-mcq' : ''} ${choice.id}`}>
             {choice.text}
           </button>
         })}

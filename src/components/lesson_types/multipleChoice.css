@@ -35,6 +35,10 @@
 }
 
 .question-answered{
-    filter: hue-rotate(20deg) opacity(0.8);
+    filter: opacity(0.8);
     pointer-events: none;
+}
+
+.correct-mcq{
+    border: 2px solid green;
 }
