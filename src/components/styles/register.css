@@ -1,0 +1,70 @@
+.register{
+    background-color: rgb(253, 253, 253);
+    height: 100vh;
+    padding: 4em;
+}
+
+.register h1:first-child{
+    margin-bottom: 0;
+    margin-top: 0;
+    color: rgb(49, 150, 49);
+}
+.register h2{
+    margin-top: 0;
+    text-decoration: none;
+    color: black;
+}
+
+.register a{
+    text-decoration: none;
+    color: black;
+}
+
+.personals{
+    display: flex;
+    margin-bottom: 3vh;
+}
+
+.personals input{
+    width: 8.3em;
+    margin-right: 5px;
+    border-color: rgb(60, 60, 223);
+}
+
+.register-username, .register-password{
+    width: 17.2em;
+}
+
+.register-username{
+    margin-bottom: 3vh;
+}
+
+.register-button{
+    width: 17em;
+    border-radius: 10px;
+    border: 1px solid;
+    height: 2.5em;
+    margin-top: 2em;
+    background-color: rgb(38, 168, 107);
+    color: white;
+    font-weight: 800;
+}
+
+
+.link-to-login{
+    margin-top: auto;
+    margin-bottom: 0;
+    font-size: 0.9em;
+    color: rgb(82, 82, 82);
+}
+
+.link-to-login span{
+    color: rgb(52, 52, 226);
+    cursor: pointer;
+}
+
+.link-to-login span:hover{
+    color: blue;
+    font-size: 700;
+}
+

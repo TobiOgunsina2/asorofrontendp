@@ -14,7 +14,6 @@ export default function fillInSentenceGap({sentence, phrase}: {sentence: any, ph
   const {answers, setAnswers} = useContext(MyContext)
 
   useEffect(()=>{
-    console.log(answers)
     return ()=>setAnswers({...answers, sentences: [...answers.sentences, sentence.id]})
   }, [])
 
@@ -39,6 +38,7 @@ export default function fillInSentenceGap({sentence, phrase}: {sentence: any, ph
 
   const onDrop = (e: any, dropId:any) => {
     const text = e.dataTransfer.getData("text");
+    console.log(e)
 
     const sentence = state.sentence.map(word => {
       if (word.id === dropId) {
@@ -47,6 +47,7 @@ export default function fillInSentenceGap({sentence, phrase}: {sentence: any, ph
       return word;
     });
     setState({ ...state, sentence });
+    console.log(state)
   };
   
 

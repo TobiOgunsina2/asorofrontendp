@@ -21,6 +21,7 @@ export default function SentenceBox({ marked, sentence, onDrop }: { marked: Bool
       if (marked) {
         bgcolor = word.text === word.displayed ? "lightgreen" : "#F77";
       }
+      console.log(word.displayed)
 
       return (
         <Droppable
