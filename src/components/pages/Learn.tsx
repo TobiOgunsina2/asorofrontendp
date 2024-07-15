@@ -41,8 +41,7 @@ const Learn = () => {
       .then((data)=> 
         {
           setProfile(data)
-          console.log(data.userData)
-          localStorage.setItem('shortened', data.userData.shortened_user)
+          localStorage.setItem('shortened', profile.userData.shortened_user)
         })
       .catch((err)=> console.log(err))
   }

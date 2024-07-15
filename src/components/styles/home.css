@@ -1,0 +1,33 @@
+.home-header{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.8em 2em;
+    background-color: rgb(220, 220, 220);
+    font-size: 1.2em;
+}
+
+.home-header a {
+    text-decoration: none;
+}
+
+.header-left{
+    display: flex;
+    gap: 2vw;
+}
+
+.home-main{
+    display: flex;
+    align-items: center;
+}
+
+.home-slogan{
+
+}
+
+.home-image img{
+    width: 25vw;
+    height: 25vw;
+}
+
+
