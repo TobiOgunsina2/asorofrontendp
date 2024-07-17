@@ -20,7 +20,8 @@ const ReviewPage = ()=>{
 
     useEffect(()=>{
         const { state } = location.state
-        setSlides([...state.data.slice(0, 20).map((phrase: any)=>{
+        console.log(state)
+        setSlides([...state.data.slice(0, 13).map((phrase: any)=>{
             return <TypeIn phrase={phrase}/>
         }), <ReviewComplete />])
     },[])

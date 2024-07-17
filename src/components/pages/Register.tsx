@@ -14,6 +14,7 @@ const Register = () => {
 
   const navigate = useNavigate()
 
+
   let registerUser = async(e: React.ChangeEvent<HTMLFormElement>) =>{
     e.preventDefault()
 

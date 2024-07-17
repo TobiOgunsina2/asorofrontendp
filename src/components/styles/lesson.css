@@ -11,6 +11,7 @@
     cursor: pointer;
     transition: all 500ms ease-in-out;
     scrollbar-width: none;
+    -ms-overflow-style: none;
     scroll-snap-align: start;
     scroll-snap-stop: always;
     scroll-snap-align: end;
@@ -29,8 +30,13 @@
     width: 45%;
 }
 
-.lesson-img{
-    border: 1px solid;
+.complete.active .img{
+    outline: 4px solid green;
+}
+
+.active .img{
+    outline: 2px solid rgb(139, 139, 139);
+    outline-offset: 2px;
     border-radius: 20px;
     width: 13em;
     height: 11em;
@@ -38,9 +44,29 @@
     margin-right: 4px;
 }
 
-.complete .lesson-img{
-    outline: 4px solid rgb(46, 209, 13);
-    outline-offset: 3px;
+.img{
+    position: relative;
+}
+
+ .lesson-img{
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    object-fit: cover;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.gradient{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(22, 183, 124);
+    opacity: 0.4;
+    border-radius: 20px;
+    position: absolute;
+    top: 0px;
+    left: 0px
 }
 
 

@@ -10,20 +10,25 @@ const Home = () => {
             navigate('/learn')
         }
     },[])
+
+    const joinRedirect = ()=>{
+      navigate('/register')
+    }
     
   return (
-    <div>
+    <div className='home-page'>
       <header className='home-header'>
-        <Link to='/'>Home</Link>
+        <Link to='/'>Asoro</Link>
         <div className="header-left">
           <Link to='/login'>Login</Link>
-          <Link to='/register'>Register</Link>
+          <Link to='/register'>Sign Up</Link>
         </div>
       </header>
       <main className='home-main'>
-        <section className="text">
-          <h1 className='home-slogan'>Reconnect with your culture</h1>
-
+        <section className="home-text">
+          <h1 className='home-slogan'>Reconnect with <br />your culture</h1>
+          <p>Dive into immersive lessons that cover essential vocabulary, grammar, and pronunciation while exploring the vibrant traditions, music, and stories of the Yoruba people.</p>
+          <button onClick={joinRedirect} className='home-start'>Join Now!</button>
         </section>
 
         <section className="home-image">

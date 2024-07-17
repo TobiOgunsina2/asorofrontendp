@@ -13,6 +13,7 @@ const LessonPage = () => {
   const {userHasAnswered, setUserHasAnswered} = useContext(MyContext)
   const {answers} = useContext(MyContext)
   const [progress, setProgress] = useState(0)
+  const [accuracy, setAccuracy] = useState(0)
   
   const { uid } = useParams()
   const { lid } = useParams()
@@ -89,7 +90,7 @@ const LessonPage = () => {
           break;
       }
     }
-    components.push(<LessonComplete lesson={Number(lid)} />)
+    components.push(<LessonComplete accuracy={1} lesson={Number(lid)} />)
     return components
 }
     
@@ -100,13 +101,25 @@ const LessonPage = () => {
       .then((res) => res.data)
       .then((data)=> {
           setSlides(createSlidesOrder(data[0]))
-          console.log(data)
         })
       .catch((err)=> console.log(err))
   }
   
 
   const changeLessonComponent = () => {
+    if(userHasAnswered.answeredRight==false){
+      let temp = slides
+      temp.splice(slides.length-1, 0, slides[slideNumber])
+      setSlides(temp)
+      setAccuracy(accuracy-1)
+    }
+    if (slideNumber==(slides.length-2)){
+      let temp = slides
+      temp.pop()
+      temp.push(<LessonComplete accuracy={(slides.length+accuracy)/slides.length} lesson={Number(lid)} />)
+      setSlides(temp)
+    }
+
     setSlideNumber(slideNumber+1)
     setUserHasAnswered({answered:false, answeredRight: null})
     setProgress((slideNumber+2)/slides.length)

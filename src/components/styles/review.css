@@ -81,3 +81,47 @@ tbody tr:nth-child(odd){
 td, th{
     padding-left: 1vw;
 }
+
+.dot {
+    height: 7px;
+    margin-bottom: 2px;
+    margin-left: 3px;
+    margin-right: 3px;
+    width: 7px;
+    background-color: #bbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+} 
+
+.level{
+    font-weight: 500;
+}
+
+.level1{
+    border-radius: 8px;
+    color: rgb(192, 243, 24);
+}
+
+.level1 .dot{
+    background-color: rgb(192, 243, 24);
+}
+
+.level2{
+    border-radius: 8px;
+    color: rgb(216, 175, 10);
+}
+
+.level2 .dot{
+    background-color: rgb(216, 175, 10);
+}
+
+.level3{
+    border-radius: 8px;
+    color: rgb(196, 7, 7);
+}
+
+.level3 .dot{
+    background-color: rgb(196, 7, 7);
+}
+

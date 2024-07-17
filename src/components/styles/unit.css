@@ -6,6 +6,7 @@
     padding: 1em;
     width: 60vw;
     height: 23.4rem;
+    scrollbar-width: none;
 }
 
 
@@ -15,6 +16,7 @@
     gap: 8px;
     margin-top: 2em;
     scroll-snap-type: x mandatory;
+    scrollbar-width: none;
     &::-webkit-scrollbar {
         display: none;
     }

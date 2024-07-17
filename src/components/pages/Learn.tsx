@@ -15,7 +15,7 @@ interface unitType {
 
 const Learn = () => {
   const [units, setUnits] = useState<[{id: number,unitName: String, unitDescription: String,lessons: any}]>([{lessons: [], id: 0,unitName: '',unitDescription: ''}])
-  const [profile, setProfile] = useState<any>({progressData: {streak: 0, lessons: []}})
+  const [profile, setProfile] = useState<any>({progressData: {streak: 0, lessons: []}, userData: {profile: 1, shortened_user: '', username: ''}})
   const [isLoading, setIsLoading] = useState(false)
   
   const completed = profile.progressData.lessons.map((lesson: any)=>{
@@ -32,7 +32,7 @@ const Learn = () => {
     getProfile()
     setTimeout(()=>{
       setIsLoading(true)
-    }, 800)
+    }, 400)
   }, [])
   const getProfile = () => {
     api
@@ -41,7 +41,9 @@ const Learn = () => {
       .then((data)=> 
         {
           setProfile(data)
-          localStorage.setItem('shortened', profile.userData.shortened_user)
+          console.log(data)
+          localStorage.setItem('shortened', data.userData.shortened_user)
+        }).then(()=>{
         })
       .catch((err)=> console.log(err))
   }

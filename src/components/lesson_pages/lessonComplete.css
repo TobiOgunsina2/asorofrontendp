@@ -1,0 +1,36 @@
+.points{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: center;
+    gap: 1vw;
+    padding-top: 2em;
+}
+
+.lesson-complete h1{
+    font-size: 1.7em;
+    margin-bottom: 0;
+}
+
+.progress-points, .score, .words-learned{
+    border: 2px solid rgb(152, 152, 152);
+    border-radius: 12px;
+    flex: 1 0 auto;
+    height: 6em;
+    width: 18em;
+    margin: 0 auto;
+}
+
+.points-header{
+    font-size: 1.2em;
+    font-weight: 600;
+    color: rgb(33, 161, 184);
+}
+
+.progress-score,.score-value{
+    color: rgb(4, 112, 4);
+}
+
+.lesson-complete .lesson-footer {
+    padding: 1em;
+}

@@ -6,8 +6,10 @@ const LessonComponent = (props:{lesson: any, value: any, clickHandler: any, id: 
   return (
     <div className={`lesson ${props.value} ${props.complete ? 'complete' : ''}`} onClick={props.clickHandler} id={`${String(props.id)}`} >        
 
-<img className='lesson-img' src="../img.img" width={100} height={100} alt="" />
-
+        <div className="img">
+          <div className="gradient"></div>
+          <img className='lesson-img' src="../img.img" width={100} height={100} alt="" />
+        </div>
         <section className="lesson-about">
 
         <h2 className="title">{props.lesson.lessonName.replace(/U[^.]*\./, '')}</h2>

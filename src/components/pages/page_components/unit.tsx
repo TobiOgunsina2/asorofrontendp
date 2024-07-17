@@ -40,7 +40,6 @@ const Unit = (props: {id: string, unitName: String, unitDescription: String, les
       const temp = Array.from(''.repeat(lessons.length))
       temp[2] = 'active'
       setisActive(temp)
-      console.log(e.target.scrollLeft)
       atSnappingPoint=true
     }
     if (e.target.scrollLeft-currentWidth>470){

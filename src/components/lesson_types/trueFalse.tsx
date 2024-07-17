@@ -34,7 +34,6 @@ const trueFalse = ({phrase}: {phrase: any}) => {
   const handleClick = (e: any) => {
     if ((phrase.phraseTranslation===questionAnswer).toString()===e.target.className) {
       if (e.target.className=='true'){
-        console.log(trueButton.current.style)
         trueButton.current.style.border = '1.3px solid rgb(26, 222, 85)'
         trueButton.current.style.outline = 'none'
       }

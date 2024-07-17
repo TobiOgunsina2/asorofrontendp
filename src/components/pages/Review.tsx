@@ -31,10 +31,8 @@ const Review = () => {
     }, [])
 
     const onTypeSearch = (e: any) =>{
-        console.log('searching')
         setSearchedVal(e.target.value)
         
-        console.log('searching')
         setData(constantData.filter((row: any) =>
             !searchedVal.length || row.text
             .toString()
@@ -72,10 +70,16 @@ const Review = () => {
                     </thead>
                     <tbody>
                         {data.map((phrase: any, index: any)=>{
+                            let masteryLevel = phrase.masteryLevel>4 ? 3 : phrase.masteryLevel > 2 ? 2 : 1
                             return (<tr key={index} className='users-table-cell'>
                                 <td>{phrase.text}</td>
                                 <td>{phrase.phraseTranslation || phrase.sentenceTranslation}</td>
-                                <td>{'Level 1'}</td>
+                                <td >
+                                    <span className={`level level${masteryLevel}`}>
+                                        <span className="dot"></span>
+                                        Level {masteryLevel}
+                                    </span>
+                                </td>
                             </tr>)
                         })}
                         
