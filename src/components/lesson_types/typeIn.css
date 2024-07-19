@@ -1,5 +1,6 @@
 .typeIn-container{
     padding: 3em 10em;
+    padding-top: 0.9em;
     display: grid;
     justify-content: center;
 }
@@ -38,6 +39,13 @@
     font-size: 2.2em;
 }
 
+.lesson-video{
+    border: 2px solid;
+    margin-top: 8px;
+    width: 30em;
+    border-radius: 6px;
+}
+
 .typeIn-input{
     width: 100%;
     font-size: 1.2em;
@@ -60,6 +68,44 @@
     justify-self: center;
 }
 
+
+.type-character-div button{
+    flex: 0 0 auto;
+    width: 3.2em;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid;
+    border-radius: 4px;
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+    font-size: 1em;
+    height: 2.6em;
+}
+
+.type-character-div button:nth-child(3n+1){
+    width: 4em;
+}
+
+.type-character-div button:nth-child(5n+1){
+    width: 4.2em;
+}
+
+.type-character-div button:first-child{
+    width: 5em;
+    background-color: rgb(191, 191, 191);
+    border: none;
+}
+
+.type-character-div button:first-child:hover{
+    background-color: gray;
+    color: white;
+}
+
+
+.type-character-div button:hover{
+    background-color: rgb(12, 146, 230);
+}
+
+
 .type-checkAnswers{
     height: 6vh;
     width: 10vw;
@@ -74,27 +120,7 @@
     background-color: rgb(41, 118, 186);
 }
 
-.type-character-div button{
-    flex: 0 0 auto;
-    width: 3.2em;
-    background-color: rgb(99, 177, 99);
-    border: none;
-    border-radius: 4px;
-    color: white;
-    font-weight: bold;
-}
-
-.type-character-div button:nth-child(3n+1){
-    flex: 0 0 auto;
-    width: 3em;
-}
-
-.type-character-div button:nth-child(5n+1){
-    flex: 0 0 auto;
-    width: 3.9em;
-}
-
-.type-character-div button:hover{
-    background-color: rgb(38, 141, 38);
+.space-green{
+    background-color: rgb(16, 167, 16);
 }
 

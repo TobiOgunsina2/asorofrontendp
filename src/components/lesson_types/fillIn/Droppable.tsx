@@ -13,27 +13,29 @@ export default function Droppable({
     onDrop: any,
     children: string}) {
   const [state, setState] = useState({
-    bgcolor: "white"
+    border: "white",
+    backgroundColor: 'none'
   });
 
   const _handleDrop = (e: any) => {
     onDrop(e, groupName);
-    setState({ bgcolor: "white" });
+    setState({ border: "2px solid rgb(0, 0, 0)",  backgroundColor: 'rgb(240, 240, 240)' });
   };
 
   const _handleDragOver = (e: any) => {
     e.preventDefault();
-    setState({ bgcolor: "yellow" });
+    setState({ border: "2px solid rgb(0, 0, 0)",  backgroundColor: 'none' });
   };
 
   const _handleDragLeave = (e: any) => {
     e.preventDefault();
-    setState({ bgcolor: "white" });
+    setState({ border: "none", backgroundColor: 'none' });
   };
 
   return (
     <WordBox
-      color={bgcolor ? bgcolor : state.bgcolor}
+      dragClass='droppable'
+      styles={bgcolor ? {backgroundColor: bgcolor} : state}
       data-testid={`droppable${ndx}`}
       onDragLeave={_handleDragLeave}
       onDragOver={_handleDragOver}

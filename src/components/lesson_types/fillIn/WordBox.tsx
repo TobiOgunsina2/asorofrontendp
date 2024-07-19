@@ -1,8 +1,8 @@
 import React from 'react'
 
-const WordBox = ({color, dataTestid, onDragStart, onDragLeave, onDragOver, onDrop, children}: any) => {
+const WordBox = ({styles, dataTestid, onDragStart, onDragLeave, onDragOver, onDrop, children, dragClass}: any) => {
   return (
-    <div className='WordBox' draggable={true} onDragStart={onDragStart} data-testid={dataTestid} onDrop={onDrop} onDragLeave={onDragLeave} onDragOver={onDragOver} style={{backgroundColor:color}}>
+    <div className={`WordBox ${dragClass}`} draggable={!(onDragStart==undefined)} onDragStart={onDragStart} data-testid={dataTestid} onDrop={onDrop} onDragLeave={onDragLeave} onDragOver={onDragOver} style={styles}>
         {children}
     </div>
   )

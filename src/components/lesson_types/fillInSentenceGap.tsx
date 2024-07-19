@@ -38,7 +38,6 @@ export default function fillInSentenceGap({sentence, phrase}: {sentence: any, ph
 
   const onDrop = (e: any, dropId:any) => {
     const text = e.dataTransfer.getData("text");
-    console.log(e)
 
     const sentence = state.sentence.map(word => {
       if (word.id === dropId) {
@@ -47,7 +46,6 @@ export default function fillInSentenceGap({sentence, phrase}: {sentence: any, ph
       return word;
     });
     setState({ ...state, sentence });
-    console.log(state)
   };
   
 
@@ -60,46 +58,50 @@ export default function fillInSentenceGap({sentence, phrase}: {sentence: any, ph
   const {userHasAnswered, setUserHasAnswered} = useContext(MyContext)
 
   const getResults = (data: any[]) => {
+
     let f =  data.reduce((acc, cur) => {
-      if (cur.type === "answer") {
+      if (cur.type === "answer" && userHasAnswered.answered==false) {
         if (!wrong){
-        let s = `word [${cur.text}] `;
-        if (!cur.placed) {
-          s += "has not been placed";
-        } else {
-          if (!(cur.text === cur.displayed)){
-            if (showResults){
+          let s = `word [${cur.text}] `;
+          if (!cur.placed) {
+            s += "has not been placed";
+            console.log(s)
+            if(showResults && userHasAnswered.answeredRight!=false){
               setUserHasAnswered({answered:true, answeredRight: false})
-              setState({...state, showResults: false})
+              setState({...state, showResults: true})
             }
-            s.concat("has not been placed correctly")
-            setWrong(true)
-            return acc.concat(s)
           } 
           else {
-            if (showResults){
-              setUserHasAnswered({answered:true, answeredRight: true})
-              setState({...state, showResults: false})
+            if (!(cur.text === cur.displayed)){
+              if (showResults){
+                setUserHasAnswered({answered:true, answeredRight: false})
+                setState({...state, showResults: true})
+              }
+              s.concat("has not been placed correctly")
+              setWrong(true)
+              return acc.concat(s)
+            } 
+            else {
+              if (showResults){
+                setUserHasAnswered({answered:true, answeredRight: true})
+                setState({...state, showResults: true})
+              }
+              s.concat("correct!")
             }
-            s.concat("correct!")
-          }
+          } 
+          return acc.concat(s);
+        }
+        else if (showResults && userHasAnswered.answeredRight!=false){
+          setUserHasAnswered({answered:true, answeredRight: false})
+        }
       }
-        return acc.concat(s);
-      }
-      else if (wrong && showResults && userHasAnswered.answeredRight!=false){
-        setUserHasAnswered({answered:true, answeredRight: false})
-      }
-    }
       return acc;
     }, []);
     
     return f
   };
 
-  
-
   const results = getResults(state.sentence);
-  
   
 
   return (

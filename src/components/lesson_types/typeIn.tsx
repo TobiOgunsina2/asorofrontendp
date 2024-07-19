@@ -6,6 +6,8 @@ import './typeIn.css'
 const TypeIn = ({phrase}: {phrase:any}) => {
   const {userHasAnswered, setUserHasAnswered} = useContext(MyContext)
   const [nextTyped, setNextTyped] = useState(0);
+  const [typeShift, setTypeShift] = useState(false)
+  let formRef = useRef<any>();
 
   const specialSplit =(word: any)=>{
     let splitWord: any[] = []
@@ -25,8 +27,6 @@ const TypeIn = ({phrase}: {phrase:any}) => {
   }
 
   const splitPhrase = specialSplit(phrase.text)
-
-
 
   let refs = useRef<any>([]);
   refs.current = splitPhrase.map((_: any, i: any) => refs.current[i] ?? React.createRef())
@@ -49,7 +49,7 @@ const TypeIn = ({phrase}: {phrase:any}) => {
         }
       }
     }
-    console.log(String(phrase.text.toLowerCase()), String(userAnswer.toLowerCase()), String(phrase.text.toLowerCase())==String(userAnswer.toLowerCase()))
+
     if(userAnswer.toLowerCase()==phrase.text.toLowerCase() || String(userAnswer.toLowerCase()).localeCompare(String(phrase.text.toLowerCase()))==0){
       setUserHasAnswered({answered:true, answeredRight: true})
     }
@@ -57,6 +57,7 @@ const TypeIn = ({phrase}: {phrase:any}) => {
       setUserHasAnswered({answered:true, answeredRight: false})
     }
   }
+
 
   const handleButtonClick = (char: any) => {
     if(refs.current[nextTyped].current){
@@ -97,26 +98,46 @@ const TypeIn = ({phrase}: {phrase:any}) => {
         setNextTyped(refs.current[Number(e.target.id)+1].current.id)
       }
     }
+
+    if(refs.current[e.target.id].current.id !=1){
+      setTypeShift(true)
+    }
   }
   
-  const yorubaCharacters = ['á','à','é','è','ẹ','ẹ́','ẹ̀','í','ì','ó','ò','ọ','ọ́','ọ̀','ú','ù','ṣ','ń'];
+  const yorubaCharacters = ['á','à','é','è','ẹ','ẹ́','ẹ̀','í','ì','ó','ò','ọ','ọ́','ọ̀','ú','ù','ṣ'];
+  const upperCaseCharacters = ['Á','À','É','È','Ẹ','Ẹ́','Ẹ̀','Í','Ì','Ó','Ò','Ọ','Ọ́','Ọ̀','Ṣ','Ú','Ù']
 
-  const charachterOptions = yorubaCharacters.filter(element => splitPhrase.map(v => v.toLowerCase()).includes(element))
-    return (
+  const changeShift=()=>{
+    setTypeShift(!typeShift)
+  }
+
+  const lowerCaseOptions = yorubaCharacters.filter(element => splitPhrase.map(v => v.toLowerCase()).includes(element))
+  const upperCaseOptions = upperCaseCharacters.filter(element => splitPhrase.map(v => v.toUpperCase()).includes(element))
+  
+  return (
     <div className="typeIn-container">
       <label htmlFor="yoruba-input" className="yoruba-input">Type <span className="inText english">{phrase.phraseTranslation}</span> in Yoruba:</label>
-      <div className="type-in-boxes">
+      
+      <video className='lesson-video' src="" width={200} height={200}></video>
+      <form action='' ref={formRef} onSubmit={(e)=>{e.preventDefault()}} className="type-in-boxes">
         {splitPhrase.map((letter: any, index: number)=>{
-          return <div key={index} className={`typeIn-box ${letter==' ' ? 'type-in-space': ''}`}>{letter==' ' ? '' :<input maxLength={1} onKeyDown={handleType} onChange={handleType} ref={refs.current[index]} id={String(index)} className="typeIn-input" type="text" />}</div>
+          return (
+            <div key={index}  className={`typeIn-box ${letter==' ' ? 'type-in-space': ''}`}>
+            {letter==' ' ? '' :
+            <input maxLength={1} onKeyDown={handleType} onChange={handleType} ref={refs.current[index]} id={String(index)} className={`typeIn-input ${userHasAnswered.answeredRight ? 'space-green': ''}`} type="text" />}
+            </div>
+          )
         })}
-      </div>
+      </form>
       <div className="type-character-div">
-        {charachterOptions.map((char, index) => (
-          <button key={index} onClick={() => handleButtonClick(char)}>
+        {!(lowerCaseOptions.length==0 || upperCaseOptions.length==0) ? <button onClick={changeShift} className='shift' >shift</button>: ''}
+        {(typeShift ? lowerCaseOptions : upperCaseOptions).map((char, index) => (
+          <button  key={index} onClick={() => handleButtonClick(char)}>
             {char}
           </button>
         ))}
       </div>
+
       <button className="type-checkAnswers" onClick={checkAnswers}>Check Answers</button>
     </div>
   )

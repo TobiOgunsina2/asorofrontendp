@@ -11,7 +11,7 @@ export default function SentenceBox({ marked, sentence, onDrop }: { marked: Bool
     sentence.map((word: any, i) => {
       if (word.type === "word") {
         return (
-          <WordBox data-testid={"word"} key={i}>
+          <WordBox dragClass='set' data-testid={"word"} key={i}>
             {word.text}
           </WordBox>
         );
@@ -21,7 +21,6 @@ export default function SentenceBox({ marked, sentence, onDrop }: { marked: Bool
       if (marked) {
         bgcolor = word.text === word.displayed ? "lightgreen" : "#F77";
       }
-      console.log(word.displayed)
 
       return (
         <Droppable
