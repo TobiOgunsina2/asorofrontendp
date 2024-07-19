@@ -43,6 +43,7 @@ const Learn = () => {
           setProfile(data)
           console.log(data)
           localStorage.setItem('shortened', data.userData.shortened_user)
+          localStorage.setItem('streak', data.progressData.streak)
         }).then(()=>{
         })
       .catch((err)=> console.log(err))

@@ -20,7 +20,7 @@ const LessonComplete = (props: {lesson?: Number | 800, accuracy: number}) => {
 
   return (
     <div className='lesson-complete'>
-      <h1>Lesson Complete</h1>
+      <h1>Good Job!</h1>
       <div className="points">
         <div className="progress-points">
           <p className='points-header'>Progress</p>

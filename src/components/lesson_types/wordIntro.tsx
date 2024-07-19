@@ -11,7 +11,6 @@ const wordIntro = ({phrase}:{phrase: any}) => {
   let splitPhrase = phrase.brokenDownPhrase.split('1').map((word: string, index: number)=>{
     return {word: word, wordExplanation: phrase.containedWords[index]}
   })
-  console.log(splitPhrase)
 
   useEffect(()=>{
     setUserHasAnswered({answered:true, answeredRight: null})

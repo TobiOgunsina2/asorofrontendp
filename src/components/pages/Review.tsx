@@ -50,7 +50,7 @@ const Review = () => {
             <Sidebar/>
         </div>
             <div className="main">
-            <Header streak={1} fullProgress={Number(localStorage.getItem('fullProgress'))} shortened={String(localStorage.getItem('shortened'))}/>
+            <Header streak={Number(localStorage.getItem('streak'))} fullProgress={Number(localStorage.getItem('fullProgress'))} shortened={String(localStorage.getItem('shortened'))}/>
             <div className="review-content">
                 <h1 className='review-h1'>Review</h1>
                 <div className="top-review">
