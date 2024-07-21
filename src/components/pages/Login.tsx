@@ -16,7 +16,6 @@ const Login = () => {
 
   let loginUser = async(e: React.ChangeEvent<HTMLFormElement>) =>{
     e.preventDefault()
-    console.log(e)
     setLoading(true)
     try {
       const res = await api.post('/api/token/', {'username': username, 'password':password})

@@ -5,6 +5,7 @@ import LessonComplete from './LessonComplete'
 import api from '../../context/api'
 import MyContext from '../../context/Context'
 import './lessonPage.css'
+import Loader from '../pages/page_components/loader'
 
 
 const LessonPage = () => {
@@ -14,6 +15,7 @@ const LessonPage = () => {
   const {answers} = useContext(MyContext)
   const [progress, setProgress] = useState(0)
   const [accuracy, setAccuracy] = useState(0)
+  const [isLoading, setIsLoading] = useState(true)
   
   const { uid } = useParams()
   const { lid } = useParams()
@@ -101,6 +103,10 @@ const LessonPage = () => {
       .then((res) => res.data)
       .then((data)=> {
           setSlides(createSlidesOrder(data[0]))
+          
+        })
+        .then(()=>{
+          setTimeout(()=>{setIsLoading(false)}, 400)
         })
       .catch((err)=> console.log(err))
   }
@@ -116,7 +122,7 @@ const LessonPage = () => {
     if (slideNumber==(slides.length-2)){
       let temp = slides
       temp.pop()
-      temp.push(<LessonComplete accuracy={(slides.length+accuracy)/slides.length} lesson={Number(lid)} />)
+      temp.push(<LessonComplete key={slides.length} accuracy={(slides.length+accuracy)/slides.length} lesson={Number(lid)} />)
       setSlides(temp)
     }
 
@@ -128,7 +134,7 @@ const LessonPage = () => {
   const navigate = useNavigate()
 
   return (
-    <div className='lesson-page'>
+    <div className='lesson-page' style={userHasAnswered.answered && (userHasAnswered.answeredRight || userHasAnswered.answeredRight==false) ? {height:'106vh'} : {}}>
       <header className='lesson-header'>
         <div className="progress-bar">
           <div className="progress-bar-fill" style={{width: `${progress*100}%`}}></div>
@@ -138,7 +144,11 @@ const LessonPage = () => {
 
       </header>
       
-      {slides[slideNumber]}
+      {isLoading ? <><p style={{position: 'absolute', top: '49vh', left: '42.5vw', fontSize: '4vw', fontWeight: '700', color: 'rgb(3, 205, 3)'}}>Loading</p><Loader/></>
+       : <div className="lesson-slide">
+        {slides[slideNumber]}
+        </div>
+      }
       
 
     

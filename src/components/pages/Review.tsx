@@ -70,7 +70,7 @@ const Review = () => {
                     </thead>
                     <tbody>
                         {data.map((phrase: any, index: any)=>{
-                            let masteryLevel = phrase.masteryLevel>4 ? 3 : phrase.masteryLevel > 2 ? 2 : 1
+                            let masteryLevel = phrase.masteryLevel>10 ? 3 : phrase.masteryLevel > 6 ? 2 : 1
                             return (<tr key={index} className='users-table-cell'>
                                 <td>{phrase.text}</td>
                                 <td>{phrase.phraseTranslation || phrase.sentenceTranslation}</td>

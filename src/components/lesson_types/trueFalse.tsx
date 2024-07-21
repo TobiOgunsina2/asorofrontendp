@@ -54,6 +54,7 @@ const trueFalse = ({phrase}: {phrase: any}) => {
 
   return (
     <div className='true-false'>
+      <video className="tf-video" src=""></video>
       <div className="question"><h1>Does <span className="inText yoruba">{phrase.text}</span> mean <span className="inText english">{questionAnswer}</span></h1></div>
       <button ref={trueButton} className="true" onClick={handleClick}>True</button>
       <button ref={falseButton} className="false" onClick={handleClick}>False</button>

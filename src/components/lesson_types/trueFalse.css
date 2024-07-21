@@ -1,8 +1,15 @@
 .question h1{
-    margin-bottom: 13vh;
-    margin-top: 8vh;
+    margin-bottom: 1.3em;
+    margin-top: 1em;
     font-size: 1.6em;
 }
+
+.tf-video{
+    border: 1px solid;
+    border-radius: 8px;
+    width: 29em;
+}
+
 
 .question h1 .yoruba{
     text-decoration: solid underline green;

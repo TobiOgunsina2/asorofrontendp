@@ -4,13 +4,13 @@
 }
 
 @keyframes rollout {
-    0% { transform: translateY(100px); }
-    40% { transform: translateY(-10px); }
-    85% {transform: translateY(8px);}
+    0% { transform: translateY(90px); }
+    40% { transform: translateY(-8px); }
+    85% {transform: translateY(6px);}
     100% { transform: none; }
   }
 
 .lesson-footer.wrong, .lesson-footer.correct{
     height: 7em;
-    animation: rollout 0.6s;
+    animation: rollout 0.4s;
 }

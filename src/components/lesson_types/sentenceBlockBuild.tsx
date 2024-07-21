@@ -10,6 +10,8 @@ function shuffleArray(array: any) {
   return shuffled
 }
 
+
+
 const sentenceBlockBuild = (phrase: any) => {
   const {userHasAnswered, setUserHasAnswered} = useContext(MyContext)
   const {answers, setAnswers} = useContext(MyContext)

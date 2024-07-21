@@ -6,7 +6,7 @@ import ProgressBar from "./progressBar"
 
 const Unit = (props: {id: string, unitName: String, unitDescription: String, lessons: any[], available: boolean, completedLessons: any[]}) => {
   const {unitName, unitDescription, lessons} = props
-  const [isActive, setisActive] = useState(new Array(lessons.length))
+  const [isActive, setisActive] = useState(new Array(lessons.length).fill(''))
   const [currentWidth, setCurrentWidth] = useState(0)
   const [unitProgress, setUnitProgress] = useState(0)
   const {completedLessons} = props
@@ -66,7 +66,7 @@ const Unit = (props: {id: string, unitName: String, unitDescription: String, les
   }
 
   const clickLesson = (e: any)=>{
-    const temp = Array.from(''.repeat(lessons.length))
+    const temp = new Array(lessons.length).fill('')
     temp[Number(e.target.id)] = 'active'
     setisActive(temp)
   }
@@ -77,7 +77,7 @@ const Unit = (props: {id: string, unitName: String, unitDescription: String, les
         <ProgressBar bgcolor="rgb(0, 200, 100)" progress={String(Math.round((unitProgress/lessons.length)*100))} height={17}/>
         <div onScroll={scrollHandler} className="lessons">
           {lessons.map((lesson, index)=>{
-            return <LessonComponent complete={completedLessons.includes(lesson.id)} clickHandler={clickLesson} key={lesson.id} id={index} value={props.available ?isActive[index]: ''} lesson={lesson}/>
+            return <LessonComponent complete={completedLessons.includes(lesson.id)} clickHandler={clickLesson} key={lesson.id} id={index} value={props.available ? isActive[index]: ''} lesson={lesson}/>
           })}
           <div className="lesson transparent"></div>
         </div>

@@ -10,7 +10,7 @@ const LessonComponent = (props:{lesson: any, value: any, clickHandler: any, id: 
           <div className="gradient"></div>
           <img className='lesson-img' src="../img.img" width={100} height={100} alt="" />
         </div>
-        <section className="lesson-about">
+        <section id={`${String(props.id)}`} className="lesson-about">
 
         <h2 className="title">{props.lesson.lessonName.replace(/U[^.]*\./, '')}</h2>
         <h3 className="description">{props.lesson.lessonDescription}</h3>

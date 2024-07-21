@@ -25,7 +25,6 @@ const RequireAuth = () => {
         setIsAuthorized(false)
       }
     } catch (error) {
-      console.log('refresh failed')
       setIsAuthorized(false)
     }
   }
@@ -47,7 +46,7 @@ const RequireAuth = () => {
 
   const location = useLocation()
   if (isAuthorized === null) {
-    return <h1>Is Loading</h1>
+    return <></>
   }
   return (
     <div>
