@@ -24,14 +24,16 @@ function matchPairs(props: any) {
   const {setUserHasAnswered} = useContext(MyContext)
   const [currentNode, setCurrentNode] = useState({phrase: '', answer: ''})
   
-  console.log(matches)
-
   const [correctAnswers, setCorrectAnswers] = useState<any>([])
   const [selectedA, setSelectedA] = useState<number>()
   const [selectedP, setSelectedP] = useState<number>()
 
   const ref1: any= useRef({})
   const ref2: any= useRef({})
+
+  useEffect(()=>{
+    setUserHasAnswered({answered:false, answeredRight: null})
+  }, [])
 
 
   useEffect(()=>{
@@ -43,10 +45,12 @@ function matchPairs(props: any) {
         ref2.current[currentNode.answer].style.pointerEvents = 'none'
         ref1.current[currentNode.phrase].style.cursor = 'not-allowed'
         ref2.current[currentNode.answer].style.cursor = 'not-allowed'
+        ref1.current[currentNode.phrase].style.border = '2px solid'
+        ref2.current[currentNode.answer].style.border = '2px solid'
         ref1.current[currentNode.phrase].style.borderColor = 'green'
         ref2.current[currentNode.answer].style.borderColor = 'green'
-        ref1.current[currentNode.phrase].style.opacity = 0.65
-        ref2.current[currentNode.answer].style.opacity = 0.65
+        ref1.current[currentNode.phrase].style.opacity = 0.8
+        ref2.current[currentNode.answer].style.opacity = 0.8
         
 
         console.log(ref1.current[currentNode.answer].style, ref2.current[currentNode.answer].style)
@@ -63,20 +67,23 @@ function matchPairs(props: any) {
       setCurrentNode({phrase: '', answer: ''})
     }
     if(correctAnswers.length==matches.length){
-      setUserHasAnswered({answered:true, answeredRight: null})
+      setUserHasAnswered({answered:true, answeredRight: true})
       setAnswers({...answers, phrases: [...answers.phrases, phrase.id]})
     }
   }, [currentNode])
 
   
   return (
-    <div className="pairContainer">
+    <>
+    <h1 className="match-prompt">Match the Phrases</h1>
 
+
+    <div className="match-container">
     
-      <div className="phrase">
+      <div className="match-phrases">
         {phrases.map((match: any)=> {
           return <button key={match.index} 
-          className={selectedP == match.index ? "cssSelectedp" : "cssNotSelectedp"} 
+          className={`match-options ${selectedP == match.index ? "cssSelectedp" : "cssNotSelectedp"}`} 
           id={`${match.index}`} 
           onClick={(e)=>{
             setCurrentNode({...currentNode, phrase:e.currentTarget.id}); 
@@ -92,10 +99,10 @@ function matchPairs(props: any) {
         })}
       </div>
 
-      <div className="answers">
+      <div className="match-answers">
         {answerChoices.map((match: any)=> {
           return <button key={match.index} 
-          className={selectedA == match.index ? "cssSelecteda" : "cssNotSelecteda"} 
+          className={`match-options ${selectedA == match.index ? "cssSelecteda" : "cssNotSelecteda"}`} 
           id={`${match.index}`}
           ref={element => {
             if(element) {
@@ -110,6 +117,8 @@ function matchPairs(props: any) {
       </div>
 
     </div>
+    </>
+
   )
 }
 

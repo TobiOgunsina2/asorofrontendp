@@ -8,9 +8,12 @@ const wordIntro = ({phrase}:{phrase: any}) => {
   const {setUserHasAnswered} = useContext(MyContext)
   const {answers, setAnswers} = useContext(MyContext)
 
-  let splitPhrase = phrase.brokenDownPhrase.split('1').map((word: string, index: number)=>{
+  console.log(phrase)
+
+  let splitPhrase = phrase.brokenDownPhrase ?phrase.brokenDownPhrase.split('1').map((word: string, index: number)=>{
     return {word: word, wordExplanation: phrase.containedWords[index]}
-  })
+  }) : [{word: phrase.text, wordExplanation: {text: phrase.wordNote}}]
+
 
   useEffect(()=>{
     setUserHasAnswered({answered:true, answeredRight: null})
@@ -27,17 +30,16 @@ const wordIntro = ({phrase}:{phrase: any}) => {
         <h2>{splitPhrase.map((word: any)=>{
           if (word.wordExplanation){
 
-          
           return (<span className="annotation">
             <span className="annotation-text">
-            {word.wordExplanation.text} - <span className="word-meaning">{word.wordExplanation.wordTranslation} </span>
+            {word.wordExplanation.text} <span className="word-meaning">{word.wordExplanation.wordTranslation} </span>
             </span>
             <span className="annotation-symbol">
               {word.word}&nbsp;
             </span>
             </span>)
         }})}</h2>
-        <h4>{phrase.phraseTranslation}</h4>
+        <h4>{phrase.phraseTranslation ? phrase.phraseTranslation : phrase.wordTranslation.replace(/\s*\(.*?\)\s*-\s*/g, '')}</h4>
       </div>
     </div>
   )

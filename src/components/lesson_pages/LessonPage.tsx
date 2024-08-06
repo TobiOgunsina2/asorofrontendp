@@ -49,9 +49,13 @@ const LessonPage = () => {
             case 'w':
               phrase = data.words[Number(lessonOrder[i][1])-1]
             break;
+            case 's':
+              phrase = data.sentences[Number(lessonOrder[i][1])-1]
+            break;
         }
         switch(lessonOrder[i][2]) {
           case "i":
+            console.log(phrase)
             components.push(<lessonComponents.wordIntro key={phrase.id} phrase={phrase}/>)
           break;
           case 'm':
@@ -67,19 +71,20 @@ const LessonPage = () => {
             components.push(<lessonComponents.trueFalse key={phrase.id} phrase={phrase}/>)
           break;
           case 'b':
-            components.push(<lessonComponents.sentenceBlockBuild key={phrase.id} phrase={phrase}/>)
+            components.push(<lessonComponents.sentenceBlockBuild key={i} phrase={phrase}/>)
           break;
           case 'f':
             if (lessonOrder[i][3]){
               console.log(data.sentences[Number(lessonOrder[i][3])-1])
-              components.push(<lessonComponents.fillInSentenceGap key={phrase.id} phrase={phrase} sentence={data.sentences[Number(lessonOrder[i][3])-1]}/>)
+              console.log(phrase)
+              console.log(data.sentences)
+              components.push(<lessonComponents.fillInSentenceGap key={phrase.id} phrase={data.phrases[Number(lessonOrder[i][3])-1]} sentence={phrase}/>)
             }
             break;
           case 'p':
             if (lessonOrder[i][3]){
               let x=3
               let phrases: [] = []
-              console.log(lessonOrder[i].length-1)
               while (x<lessonOrder[i].length){
                 phrases.push(data.phrases[Number(lessonOrder[i][x])-1])
                 x+=1
@@ -102,15 +107,14 @@ const LessonPage = () => {
       .get(`/api/unit/${uid}/lesson/${lid}/`)
       .then((res) => res.data)
       .then((data)=> {
-          setSlides(createSlidesOrder(data[0]))
-          
-        })
-        .then(()=>{
-          setTimeout(()=>{setIsLoading(false)}, 400)
-        })
+        console.log(data)
+        setSlides(createSlidesOrder(data[0]))    
+      })
+      .then(()=>{
+        setTimeout(()=>{setIsLoading(false)}, 400)
+      })
       .catch((err)=> console.log(err))
-  }
-  
+  } 
 
   const changeLessonComponent = () => {
     if(userHasAnswered.answeredRight==false){
@@ -144,11 +148,10 @@ const LessonPage = () => {
 
       </header>
       
-      {isLoading ? <><p style={{position: 'absolute', top: '49vh', left: '42.5vw', fontSize: '4vw', fontWeight: '700', color: 'rgb(3, 205, 3)'}}>Loading</p><Loader/></>
-       : <div className="lesson-slide">
+      <div className="lesson-slide">
         {slides[slideNumber]}
-        </div>
-      }
+      </div>
+      
       
 
     

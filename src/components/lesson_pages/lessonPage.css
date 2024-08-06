@@ -17,8 +17,8 @@
 .lesson-footer button{
     border-radius: 60px;
     border: 1px solid;
-    width: 16%;
-    height: 3vw;
+    width: 9em;
+    height: 2em;
     background-color: rgb(37, 172, 66);
     color: white;
     font-size: 1.2rem;
@@ -45,7 +45,7 @@
 
 .progress-bar{
     width: 50vw;
-    height: 2vw;
+    height: 1.5em;
     margin: 1.7vw auto;
     border-radius: 16px;
     background-color: rgb(240, 240, 255);

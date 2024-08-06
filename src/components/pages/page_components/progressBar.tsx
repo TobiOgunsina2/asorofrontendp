@@ -7,14 +7,14 @@ const ProgressBar = (props: {bgcolor: string,progress: string,height: number}) =
     const Parentdiv = {
         height: height,
         width: '80%',
-        backgroundColor: 'whitesmoke',
+        backgroundColor: 'rgb(237, 237, 237)',
         borderRadius: 40,
         margin: '10px auto',
       }
      
       const Childdiv = {
         'height': '100%',
-        'width': `${progress}%`,
+        'width': Number(progress)>0?`${progress}%`: '7%',
         'backgroundColor': bgcolor,
         'borderRadius': 40,
         'TextAlign': 'right',

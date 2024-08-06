@@ -1,6 +1,6 @@
 // import React from 'react'
 
-import { useContext, useRef } from "react"
+import { useContext, useEffect, useRef } from "react"
 import MyContext from "../../context/Context"
 import './multipleChoice.css'
 
@@ -9,6 +9,9 @@ const multipleChoice = ({phrase}: {phrase: any}) => {
   const {answers, setAnswers} = useContext(MyContext)
   let {userHasAnswered, setUserHasAnswered} = useContext(MyContext)
   
+  useEffect(()=>{
+    setUserHasAnswered(false)
+  }, [])
 
   const handleChoice = (e:any) => {
     if (e.target.value == phrase.text){

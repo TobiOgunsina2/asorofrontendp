@@ -48,6 +48,12 @@ const Unit = (props: {id: string, unitName: String, unitDescription: String, les
       setisActive(temp)
       atSnappingPoint=true
     }
+    if (e.target.scrollLeft-currentWidth>770){
+      const temp = Array.from(''.repeat(lessons.length))
+      temp[4] = 'active'
+      setisActive(temp)
+      atSnappingPoint=true
+    }
 
 
     if (e.target.scrollLeft-currentWidth<75 && e.target.scrollLeft!=0){
@@ -72,10 +78,10 @@ const Unit = (props: {id: string, unitName: String, unitDescription: String, les
   }
   
   return (
-      <div className='unit' id={props.id} style={!props.available ?{backgroundColor:'gray', filter: 'opacity(0.8)', pointerEvents:'none'}: {}}>
+      <div className='unit' id={props.id} style={!props.available ?{backgroundColor:'rgb(220, 220, 220)',filter: 'opacity(0.7)'/*, pointerEvents:'none'*/}: {}} >
         <h2 className="unit-title">{unitName}</h2>
         <ProgressBar bgcolor="rgb(0, 200, 100)" progress={String(Math.round((unitProgress/lessons.length)*100))} height={17}/>
-        <div onScroll={scrollHandler} className="lessons">
+        <div onScroll={scrollHandler}  className="lessons">
           {lessons.map((lesson, index)=>{
             return <LessonComponent complete={completedLessons.includes(lesson.id)} clickHandler={clickLesson} key={lesson.id} id={index} value={props.available ? isActive[index]: ''} lesson={lesson}/>
           })}

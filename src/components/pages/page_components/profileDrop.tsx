@@ -5,8 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 const profileDrop = (props: {shortened: string}) => {
   const logout = () => {
-    localStorage.removeItem('access')
-    localStorage.removeItem('refresh')
+    localStorage.clear()
     nav('/')
   }
 

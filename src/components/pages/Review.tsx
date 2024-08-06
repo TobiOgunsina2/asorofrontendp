@@ -65,7 +65,7 @@ const Review = () => {
                         <tr>
                             <th className='users-table-cell'>Yoruba</th>
                             <th className='users-table-cell'>English</th>
-                            <th className='users-table-cell'>MasteryLevel</th>
+                            <th className='users-table-cell'>Mastery Level</th>
                         </tr>
                     </thead>
                     <tbody>
