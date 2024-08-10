@@ -10,15 +10,32 @@ function shuffleArray(array: any) {
   return shuffled
 }
 
+interface propType {
+    answer: string,
+    audio: string,
+    dialogue:string,
+    id:1,
+    image: string,
+    lesson:1,
+    note:string,
+    options:string,
+    phrase: any,
+    prompt: string,
+    sentence: {id: number, text: string, translation: string, containedPhrases: any[],containedWords: any[],order: string},
+    slideType: string,
+    video:""
+}
 
+const sentenceBlockBuild = (props: propType) => {
+    let {id,answer,audio,image,lesson, slideType, options, phrase,prompt,sentence,video} = props
 
-const sentenceBlockBuild = (phrase: any) => {
   const {userHasAnswered, setUserHasAnswered} = useContext(MyContext)
   const {answers, setAnswers} = useContext(MyContext)
   const [box1Items, setBox1Items] = useState([{id:0, text:''}]);
+  console.log(phrase)
   useEffect(()=> {
     let box: any = []
-    shuffleArray(phrase.phrase.text.split(" ")).forEach((element:any, i: any) => {
+    shuffleArray(phrase[0].text.split(" ")).forEach((element:any, i: any) => {
       box.push({id: i, text:element})
     })
     setBox1Items(box)
@@ -98,20 +115,20 @@ const sentenceBlockBuild = (phrase: any) => {
     box2Items.forEach((element:any) => {
       myArray.push(element.text)
     });
-    if (JSON.stringify(myArray)==JSON.stringify(phrase.phrase.text.split(' '))){
+    if (JSON.stringify(myArray)==JSON.stringify(phrase[0].text.split(' '))){
       setUserHasAnswered({answered:true, answeredRight: true})
     }
     else{
       setUserHasAnswered({answered:true, answeredRight: false})
     }
-    setAnswers({...answers, phrases: [...answers.phrases, phrase.phrase.id]})
+    setAnswers({...answers, phrases: [...answers.phrases, phrase[0].id]})
     console.log(answers)
   }
 
   return (
       <>
           <h1 className='instruction'>
-              Arrange the words to mean '{phrase.phrase.phraseTranslation}' in Yoruba
+              Arrange the words to mean '{phrase[0].translation}' in Yoruba
           </h1>
           <div className="block-container" >
               <div
@@ -138,7 +155,6 @@ const sentenceBlockBuild = (phrase: any) => {
                   className="store box"
                   onDragOver={(e) => handleDragOver(e)}
                   onDrop={(e) => handleDrop(e, 'box2')}>
-                  <h3>Box</h3>
                   <ul className='block-ul'>
                       {
                           box2Items.map((item: any) => (
@@ -162,7 +178,7 @@ const sentenceBlockBuild = (phrase: any) => {
             <button className='submit-block' onClick={handleClick}>Submit</button>
           </footer>
           : <h1></h1>
-          }
+        }
           
       </>
   );

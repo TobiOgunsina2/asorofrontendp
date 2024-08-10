@@ -1,30 +1,62 @@
-// import React from 'react'
 import SentenceBox from "./fillIn/SentenceBox";
 import AnswerBox from "./fillIn/AnswerBox";
 import { getSentence, getAnswers } from "./fillIn/TextConverter";
-
-//import { AppContainer, PrimaryButton } from "./fillIn/styled";
 import { useContext, useEffect, useState } from "react";
 import MyContext from "../../context/Context";
 import './fillIn/fillIn.css'
+import api from "../../context/api"
 
+interface propType {
+  answer: string,
+  audio: string,
+  dialogue:string,
+  id:1,
+  image: string,
+  lesson:1,
+  note:string,
+  options:string,
+  phrase: any,
+  prompt: string,
+  sentence: {id: number, text: string, translation: string, containedPhrases: any[],containedWords: any[],order: string},
+  slideType: string,
+  video:""
+}
 
-export default function fillInSentenceGap({sentence, phrase}: {sentence: any, phrase: any}) {
+const shuffleArray = (matchingData: any) => {
+  return matchingData.slice().sort(() => Math.random() - 0.5);
+};
+
+export default function fillInSentenceGap(props: propType) {
+
+  let {id,answer,audio,image,lesson, slideType, options, phrase,prompt,sentence,video} = props
 
   const {answers, setAnswers} = useContext(MyContext)
 
   useEffect(()=>{
+    for (let i in phrase[0].relatedPhrases){
+      console.log(i)
+      api
+        .get(`/api/phrase/${phrase[0].relatedPhrases[i]}/`)
+        .then((res) => res.data)
+        .then((data)=> {
+            phrase[0].relatedPhrases[i]=data[0]
+            setState({...state, answers: Array.from(new Set(getAnswers(text).concat(...phrase[0].relatedPhrases.map((i: any)=>{return i.text.split(' ')}).flat())))})
+          })
+        .catch((err)=> console.log(err))
+    }
+
     return ()=>setAnswers({...answers, sentences: [...answers.sentences, sentence.id]})
   }, [])
 
   let preText = sentence.text.split(' ')
   for (let i in sentence.text.split(' ')){
     for (let x in sentence.text.split(' ')){
-      if (sentence.text.split(' ')[i] ==phrase.text.split(' ')[x]){
+      if (sentence.text.split(' ')[i] ==phrase[0].text.split(' ')[x]){
         preText[i] = `<${sentence.text.split(' ')[i]}>`
       }
     }
   }
+  console.log(phrase[0].relatedPhrases)
   
   const text = preText.join(' ')
 
@@ -32,7 +64,7 @@ export default function fillInSentenceGap({sentence, phrase}: {sentence: any, ph
   const [state, setState] = useState({
     showResults: false,
     question: "",
-    answers: Array.from(new Set(getAnswers(text).concat(...phrase.relatedPhrases.map((i: any)=>{return i.text.split(' ')}).flat()))),
+    answers: shuffleArray(Array.from(new Set(getAnswers(text).concat(...phrase[0].relatedPhrases.map((i: any)=>{return i/*.text.split(' ')*/}).flat())))),
     sentence: getSentence(text)
   });
 
@@ -103,11 +135,10 @@ export default function fillInSentenceGap({sentence, phrase}: {sentence: any, ph
 
   const results = getResults(state.sentence);
   
-
   return (
     <div className="AppContainer">
       <h2 className="header">Fill in the blank</h2>
-      <h4>What is <span>'{sentence.sentenceTranslation}'</span> in yoruba</h4>
+      <h4>What is <span>'{sentence.translation}'</span> in yoruba</h4>
 
       <SentenceBox
         marked={showResults}

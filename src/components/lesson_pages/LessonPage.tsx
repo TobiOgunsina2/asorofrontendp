@@ -27,74 +27,46 @@ const LessonPage = () => {
   interface dataInterface {
     id: number,
     lessonName: string,
-    lessonType: string,
+    lessonOrder: string,
     sentences: [],
     phrases: [],
     unit: number,
-    words: []
+    words: [],
+    slides: any[]
   }
 
   const createSlidesOrder = (data: dataInterface)=>{
-    const lessonOrder = data.lessonType.split(' ')
+    const rawSlides = data.slides
+    
+    rawSlides.sort((a, b) => a.id - b.id);
 
     let components: [any]= [0]
     components.pop()
     let phrase: any = {}
 
-    for (let i=0; i<lessonOrder.length; i++){
-        switch(lessonOrder[i][0]) {
-            case "p":
-              phrase = data.phrases[Number(lessonOrder[i][1])-1]
-            break;
-            case 'w':
-              phrase = data.words[Number(lessonOrder[i][1])-1]
-            break;
-            case 's':
-              phrase = data.sentences[Number(lessonOrder[i][1])-1]
-            break;
-        }
-        switch(lessonOrder[i][2]) {
+    for (let i=0; i<data.slides.length; i++){
+        switch(data.slides[i].slideType) {
           case "i":
-            console.log(phrase)
-            components.push(<lessonComponents.wordIntro key={phrase.id} phrase={phrase}/>)
+            components.push(<lessonComponents.wordIntro key={data.slides[i].id} {...data.slides[i]}/>)
           break;
           case 'm':
-            components.push(<lessonComponents.multipleChoice key={phrase.id} phrase={phrase}/>)
+            components.push(<lessonComponents.multipleChoice key={data.slides[i].id} {...data.slides[i]}/>)
           break;
           case 't':
-            components.push(<lessonComponents.multipleChoice key={phrase.id} phrase={phrase}/>)
+            components.push(<lessonComponents.multipleChoice key={data.slides[i].id} {...data.slides[i]}/>)
           break;
           case 'y':
-            if (lessonOrder[i][3]){
-              components.push(<lessonComponents.trueFalse key={phrase.id} phrase={{...phrase, answer:'same'}} />)
-            }
-            components.push(<lessonComponents.trueFalse key={phrase.id} phrase={phrase}/>)
+            components.push(<lessonComponents.trueFalse key={data.slides[i].id} {...data.slides[i]}/>)
           break;
           case 'b':
-            components.push(<lessonComponents.sentenceBlockBuild key={i} phrase={phrase}/>)
+            components.push(<lessonComponents.sentenceBlockBuild key={data.slides[i].id} {...data.slides[i]}/>)
           break;
           case 'f':
-            if (lessonOrder[i][3]){
-              console.log(data.sentences[Number(lessonOrder[i][3])-1])
-              console.log(phrase)
-              console.log(data.sentences)
-              components.push(<lessonComponents.fillInSentenceGap key={phrase.id} phrase={data.phrases[Number(lessonOrder[i][3])-1]} sentence={phrase}/>)
-            }
+              components.push(<lessonComponents.fillInSentenceGap key={data.slides[i].id} {...data.slides[i]}/>)
             break;
-          case 'p':
-            if (lessonOrder[i][3]){
-              let x=3
-              let phrases: [] = []
-              while (x<lessonOrder[i].length){
-                phrases.push(data.phrases[Number(lessonOrder[i][x])-1])
-                x+=1
-              }
-              components.push(<lessonComponents.matchPairs key={phrase.id} otherPhrases={[phrases]} phrase={phrase} />)
-            }
-            else{
-              components.push(<lessonComponents.matchPairs key={phrase.id} phrase={phrase}/>)
-            }
-          break;
+          case 'p':   
+            components.push(<lessonComponents.matchPairs key={data.slides[i].id} {...data.slides[i]}/>)
+            break;
       }
     }
     components.push(<LessonComplete accuracy={1} lesson={Number(lid)} />)

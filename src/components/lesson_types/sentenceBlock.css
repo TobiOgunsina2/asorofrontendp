@@ -4,7 +4,6 @@
     text-align: center;
     color: green;
 }
- 
 
 /* Styling for Boxes */
 
@@ -20,9 +19,9 @@
 
 .answers{
     margin: 2em;
-    padding: 10px;
     margin: 10px;
     width: 18em;
+    border: none;
     height: 5em;
 }
 
@@ -32,6 +31,7 @@
     margin: 10px;
     width: 250px;
     height: 13em;
+    width: 30em;
 }
 
 .block-container {

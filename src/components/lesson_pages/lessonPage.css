@@ -1,7 +1,28 @@
+.word-video{
+    border: 1px solid;
+    border-radius: 8px;
+    width: 25em;
+}
 
+.word-audio{
+    width: 35vw;
+    height: 3em;
+    margin-bottom: 3em;
+    margin-top: 3em;
+}
 
-.lesson-slide{
+.word-image{
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 29em;
+    height: 15em;
+}
 
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-mute-button,
+audio::-webkit-media-controls-volume-slider {
+    display: none;
 }
 
 .lesson-footer{

@@ -8,15 +8,35 @@ const shuffleArray = (matchingData: any) => {
   return matchingData.slice().sort(() => Math.random() - 0.5);
 };
 
-  
-function matchPairs(props: any) {
-  const {phrase, otherPhrases} = props
+interface propType {
+  answer: string,
+  audio: string,
+  dialogue:string,
+  id:1,
+  image: string,
+  lesson:1,
+  note:string,
+  options:string,
+  phrase: any,
+  prompt: string,
+  sentence: {containedPhrases: any[],containedWords: any[],order: string},
+  slideType: string,
+  video:""
+}
 
+  
+function matchPairs(props: propType) {
+  let {id,answer,audio,image,lesson,phrase,prompt, options, sentence,video} = props
+  let otherPhrases = ['', '']
   const {answers, setAnswers} = useContext(MyContext)
 
-  const [matches, setMatches] = useState([...[...otherPhrases[0],{id: phrase.id,text: phrase.text, phraseTranslation: phrase.phraseTranslation}].map((choice: any, index: number)=>{
-    return {phrase:choice.text, answer:choice.phraseTranslation, index: index}})
-  ])
+  const [matches, setMatches] = useState(phrase?[...phrase].map((choice: any, index: number)=>{
+    return {phrase:choice.text, answer:choice.translation, index: index}})
+  : options.split('#').filter(value=>value!='').map(
+    (option, index)=>
+      {return {phrase:option, answer:answer.split('#').filter(value=>value!='')[index], index: index}
+  }))
+
   const [phrases, setPhrases] = useState(shuffleArray([...matches]))
   const [answerChoices, setAnswerChoices] = useState(shuffleArray([...matches]))
 
@@ -51,9 +71,7 @@ function matchPairs(props: any) {
         ref2.current[currentNode.answer].style.borderColor = 'green'
         ref1.current[currentNode.phrase].style.opacity = 0.8
         ref2.current[currentNode.answer].style.opacity = 0.8
-        
 
-        console.log(ref1.current[currentNode.answer].style, ref2.current[currentNode.answer].style)
       }
       else{
         
@@ -76,8 +94,6 @@ function matchPairs(props: any) {
   return (
     <>
     <h1 className="match-prompt">Match the Phrases</h1>
-
-
     <div className="match-container">
     
       <div className="match-phrases">

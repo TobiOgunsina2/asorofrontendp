@@ -5,7 +5,26 @@ import { useContext, useEffect, useRef, useState } from "react"
 import api from "../../context/api"
 import MyContext from "../../context/Context"
 
-const trueFalse = ({phrase}: {phrase: any}) => {
+interface propType {
+  answer: string,
+  audio: string,
+  dialogue:string,
+  id:1,
+  image: string,
+  lesson:1,
+  note:string,
+  options:string,
+  phrase: any,
+  prompt: string,
+  sentence: {containedPhrases: any[],containedWords: any[],order: string},
+  slideType: string,
+  video:""
+}
+
+const trueFalse = (props: propType) => {
+  let {id,answer,audio,image,lesson, slideType, options, phrase,prompt,sentence,video} = props
+  console.log(props)
+
   const [questionAnswer, setQuestionAnswer] = useState('')
   let {setUserHasAnswered} = useContext(MyContext)
   const {answers, setAnswers} = useContext(MyContext)
@@ -13,20 +32,25 @@ const trueFalse = ({phrase}: {phrase: any}) => {
   const trueButton = useRef<any>() 
   const falseButton = useRef<any>()
   
-
   useEffect(()=>{
-    if (!phrase.relatedPhrases[0]){
-      setQuestionAnswer(phrase.phraseTranslation)
+    if (prompt && answer){
+
     }
     else{
-      console.log(phrase.relatedPhrases)
-      api
-      .get(`/api/phrase/${phrase.relatedPhrases[0].id}/`)
-      .then((res) => res.data)
-      .then((data)=> {
-          setQuestionAnswer(data[0].phraseTranslation)
-        })
-      .catch((err)=> console.log(err))
+      let random_boolean = Math.random() < 0.5
+      console.log(random_boolean)
+      if (!phrase[0].relatedPhrases[0] && random_boolean){
+        setQuestionAnswer(phrase[0].translation)
+      }
+      else{
+        api
+        .get(`/api/phrase/${phrase[0].relatedPhrases[0]}/`)
+        .then((res) => res.data)
+        .then((data)=> {
+            setQuestionAnswer(data[0].translation)
+          })
+        .catch((err)=> console.log(err))
+      }
     }
     setUserHasAnswered({answered:false, answeredRight: null})
   }, [])
@@ -54,8 +78,18 @@ const trueFalse = ({phrase}: {phrase: any}) => {
 
   return (
     <div className='true-false'>
-      <video className="tf-video" src=""></video>
-      <div className="question"><h1>Does <span className="inText yoruba">{phrase.text}</span> mean <span className="inText english">{questionAnswer}</span></h1></div>
+      <div className="slide-media">
+        {video ? <video src="" className="word-video"></video> :<></>}
+        {audio ? <audio id="audio" className="word-audio" controls>
+            <source src="your-audio-file.mp3" type="audio/mpeg"/>
+            Your browser does not support the audio element.
+        </audio>:<></>}
+        {image ? <img src={``} className="word-image"></img> :<></>}
+      </div>
+      {prompt 
+      ? <div className="question"><h1>{prompt}</h1></div> 
+      : <div className="question"><h1>Does <span className="inText yoruba">{phrase[0].text}</span> mean <span className="inText english">{questionAnswer}</span></h1></div>
+      }
       <button ref={trueButton} className="true" onClick={handleClick}>True</button>
       <button ref={falseButton} className="false" onClick={handleClick}>False</button>
     </div>
