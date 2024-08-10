@@ -128,7 +128,7 @@ const sentenceBlockBuild = (props: propType) => {
   return (
       <>
           <h1 className='instruction'>
-              Arrange the words to mean '{phrase[0].translation}' in Yoruba
+              Arrange the words to mean <span className='translation-span'>'{phrase[0].translation}'</span> in Yoruba
           </h1>
           <div className="block-container" >
               <div
