@@ -3,7 +3,25 @@ import { useContext, useEffect, useRef, useState } from "react"
 import MyContext from "../../context/Context"
 import './typeIn.css'
 
-const TypeIn = ({phrase}: {phrase:any}) => {
+interface propType {
+  answer: string,
+  audio: string,
+  dialogue:string,
+  id:1,
+  image: string,
+  lesson:1,
+  note:string,
+  options:string,
+  phrase: any,
+  prompt: string,
+  sentence: {containedPhrases: any[],containedWords: any[],order: string},
+  slideType: string,
+  video:""
+}
+
+const TypeIn = (props: propType) => {
+  let {id,answer,audio,image,lesson, slideType, options, phrase,prompt,sentence,video} = props
+
   const {userHasAnswered, setUserHasAnswered} = useContext(MyContext)
   const [nextTyped, setNextTyped] = useState(0);
   const [typeShift, setTypeShift] = useState(false)
@@ -116,7 +134,7 @@ const TypeIn = ({phrase}: {phrase:any}) => {
   
   return (
     <div className="typeIn-container">
-      <label htmlFor="yoruba-input" className="yoruba-input">Type <span className="inText english">{phrase.phraseTranslation}</span> in Yoruba:</label>
+      <label htmlFor="yoruba-input" className="yoruba-input">Type <span className="inText english">{phrase.translation}</span> in Yoruba:</label>
       
       <video className='lesson-video' src="" width={200} height={200}></video>
       <form action='' ref={formRef} onSubmit={(e)=>{e.preventDefault()}} className="type-in-boxes">

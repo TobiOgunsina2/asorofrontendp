@@ -17,7 +17,7 @@ interface propType {
   options:string,
   phrase: any,
   prompt: string,
-  sentence: {containedPhrases: any[],containedWords: any[],order: string},
+  sentence: {containedPhrases: any[],containedWords: any[],order: string, translation: string},
   slideType: string,
   video:""
 }
@@ -30,7 +30,7 @@ const multipleChoice = (props: propType) => {
   ? [...options.split('#').filter(value=>value!='').map((option: string)=>{
       return {text: option}
       }), {text: answer, isRight: true}]
-  : [phrase[0]])
+  : !sentence ?[phrase[0]] : sentence)
 
   const {answers, setAnswers} = useContext(MyContext)
   let {userHasAnswered, setUserHasAnswered} = useContext(MyContext)
@@ -67,12 +67,12 @@ const multipleChoice = (props: propType) => {
   const handleChoice = (e:any) => {
     if (e.target.value){
       setUserHasAnswered({answered:true, answeredRight: true})
-      setAnswers({...answers, phrases: [...answers.phrases, phrase.id]})
+      setAnswers({...answers, phrases: [...answers.phrases, phrase[0].id]})
     }
     else{
       console.log(e.target.value)
       setUserHasAnswered({answered:true, answeredRight: false})
-      setAnswers({...answers, phrases: [...answers.phrases, phrase.id]})
+      setAnswers({...answers, phrases: [...answers.phrases, phrase[0].id]})
     }
   }
 
@@ -80,7 +80,7 @@ const multipleChoice = (props: propType) => {
     <div className="multiple-choice-slide">
       {
       prompt?<h1 className="mcq-question">{prompt}</h1>
-      :<h1 className="mcq-question">What is "<span className="inText english">{phrase[0].translation}</span>" in Yoruba</h1>}
+      :<h1 className="mcq-question">What is "<span className="inText english">{!sentence ?phrase[0].translation: sentence.translation}</span>" in Yoruba</h1>}
       
       <div className="slide-media">
         {video ? <video src="" className="word-video"></video> :<></>}

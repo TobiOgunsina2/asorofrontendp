@@ -90,5 +90,12 @@
     border-color: blue;
 }
 
+.match-audio{
+    margin: auto auto;
+    border-radius: 0;
+    width: 80%;
+    height: 60%;
+}
+
 
 

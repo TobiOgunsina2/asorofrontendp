@@ -73,7 +73,7 @@ const Review = () => {
                             let masteryLevel = phrase.masteryLevel>10 ? 3 : phrase.masteryLevel > 6 ? 2 : 1
                             return (<tr key={index} className='users-table-cell'>
                                 <td>{phrase.text}</td>
-                                <td>{phrase.phraseTranslation || phrase.sentenceTranslation}</td>
+                                <td>{phrase.translation}</td>
                                 <td >
                                     <span className={`level level${masteryLevel}`}>
                                         <span className="dot"></span>

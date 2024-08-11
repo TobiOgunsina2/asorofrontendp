@@ -19,6 +19,17 @@
     margin: 0 auto;
 }
 
+.two-choice{
+    gap: 10px;
+}
+
+.two-choice .multi-choice{
+    padding: 1em;
+    width: 14em;
+    height: 4em;
+    font-size: bold;
+}
+
 .three-choice{
     flex-direction: column;
     margin-top: 3em;

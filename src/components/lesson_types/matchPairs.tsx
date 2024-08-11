@@ -29,12 +29,13 @@ function matchPairs(props: propType) {
   let {id,answer,audio,image,lesson,phrase,prompt, options, sentence,video} = props
   let otherPhrases = ['', '']
   const {answers, setAnswers} = useContext(MyContext)
+  console.log(options)
 
-  const [matches, setMatches] = useState(phrase?[...phrase].map((choice: any, index: number)=>{
+  const [matches, setMatches] = useState(phrase && !options ?[...phrase].map((choice: any, index: number)=>{
     return {phrase:choice.text, answer:choice.translation, index: index}})
   : options.split('#').filter(value=>value!='').map(
     (option, index)=>
-      {return {phrase:option, answer:answer.split('#').filter(value=>value!='')[index], index: index}
+      {return {phrase:option, answer: audio? audio.split(',')[index]: answer? answer.split('#').filter(value=>value!='')[index] : '', index: index}
   }))
 
   const [phrases, setPhrases] = useState(shuffleArray([...matches]))
@@ -86,7 +87,7 @@ function matchPairs(props: propType) {
     }
     if(correctAnswers.length==matches.length){
       setUserHasAnswered({answered:true, answeredRight: true})
-      setAnswers({...answers, phrases: [...answers.phrases, phrase.id]})
+      setAnswers({...answers, phrases: [...answers.phrases, phrase[0].id]})
     }
   }, [currentNode])
 
@@ -117,7 +118,8 @@ function matchPairs(props: propType) {
 
       <div className="match-answers">
         {answerChoices.map((match: any)=> {
-          return <button key={match.index} 
+          if (audio){
+            return <button key={match.index} 
           className={`match-options ${selectedA == match.index ? "cssSelecteda" : "cssNotSelecteda"}`} 
           id={`${match.index}`}
           ref={element => {
@@ -128,7 +130,27 @@ function matchPairs(props: propType) {
             }}}
           onClick={(e)=>{setCurrentNode({...currentNode, answer:e.currentTarget.id}); 
           setSelectedA(Number(e.currentTarget.id))}}>
-          {match.answer}</button>})
+          <audio id="audio" className="match-audio" controls>
+            <source src="your-audio-file.mp3" type="audio/mpeg"/>
+            Your browser does not support the audio element.
+        </audio>{/*match.answer*/}</button>
+          }
+          else{
+            return <button key={match.index} 
+          className={`match-options ${selectedA == match.index ? "cssSelecteda" : "cssNotSelecteda"}`} 
+          id={`${match.index}`}
+          ref={element => {
+            if(element) {
+              ref2.current[match.index] = element
+            } else {
+              delete ref2.current[match.index]
+            }}}
+          onClick={(e)=>{setCurrentNode({...currentNode, answer:e.currentTarget.id}); 
+          setSelectedA(Number(e.currentTarget.id))}}>
+          {match.answer}</button>
+          }
+
+          })
           }
       </div>
 

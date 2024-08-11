@@ -18,10 +18,13 @@ const Learn = () => {
   const [profile, setProfile] = useState<any>({progressData: {streak: 0, lessons: []}, userData: {profile: 1, shortened_user: '', username: ''}})
   const [isLoading, setIsLoading] = useState(false)
   
-  const completed = profile.progressData.lessons.map((lesson: any)=>{
+  const completed = [...new Set(profile.progressData.lessons.map((lesson: any)=>{
     if(lesson.completed){return lesson.lesson} 
-  })
-  localStorage.setItem('fullProgress', String(Number(completed.length*100/7).toPrecision(2)))
+  }))]
+
+  localStorage.setItem('fullProgress', String(Number(completed.length*100/units.reduce((accumulator: any, currentObject: any) => {
+    return accumulator + currentObject.lessons.length;
+  }, 0)).toPrecision(2)))
 
   
   // Make units highlighted on scroll
@@ -82,7 +85,7 @@ const Learn = () => {
           <Sidebar/>
         </div>
         <div className="main">
-          <Header fullProgress={Number(Number(completed.length*100/7).toPrecision(2))} shortened={profile.userData.shortened_user}  streak={profile.progressData.streak}/>
+          <Header fullProgress={Number(Number(completed.length*100/25).toPrecision(2))} shortened={profile.userData.shortened_user}  streak={profile.progressData.streak}/>
           <div className="content">
             <h1 className='head-h1' style={{visibility: 'hidden'}}>l</h1>
             <div className="unit-list">

@@ -32,14 +32,20 @@ const sentenceBlockBuild = (props: propType) => {
   const {userHasAnswered, setUserHasAnswered} = useContext(MyContext)
   const {answers, setAnswers} = useContext(MyContext)
   const [box1Items, setBox1Items] = useState([{id:0, text:''}]);
-  console.log(phrase)
+
   useEffect(()=> {
     let box: any = []
-    shuffleArray(phrase[0].text.split(" ")).forEach((element:any, i: any) => {
-      box.push({id: i, text:element})
-    })
+    if (sentence){
+        shuffleArray(sentence.text.split(" ")).forEach((element:any, i: any) => {
+            box.push({id: i, text:element})
+        })
+    }
+    else{
+        shuffleArray(phrase[0].text.split(" ")).forEach((element:any, i: any) => {
+            box.push({id: i, text:element})
+          })
+    }
     setBox1Items(box)
-    
   }, [])
 
 
@@ -115,12 +121,22 @@ const sentenceBlockBuild = (props: propType) => {
     box2Items.forEach((element:any) => {
       myArray.push(element.text)
     });
-    if (JSON.stringify(myArray)==JSON.stringify(phrase[0].text.split(' '))){
-      setUserHasAnswered({answered:true, answeredRight: true})
+    if(!sentence){
+        if (JSON.stringify(myArray)==JSON.stringify(phrase[0].text.split(' '))){
+            setUserHasAnswered({answered:true, answeredRight: true})
+        }
+        else{
+            setUserHasAnswered({answered:true, answeredRight: false})
+        }
+    }else{
+        if (JSON.stringify(myArray)==JSON.stringify(sentence.text.split(' '))){
+            setUserHasAnswered({answered:true, answeredRight: true})
+        }
+        else{
+            setUserHasAnswered({answered:true, answeredRight: false})
+        }
     }
-    else{
-      setUserHasAnswered({answered:true, answeredRight: false})
-    }
+    
     setAnswers({...answers, phrases: [...answers.phrases, phrase[0].id]})
     console.log(answers)
   }
@@ -128,7 +144,7 @@ const sentenceBlockBuild = (props: propType) => {
   return (
       <>
           <h1 className='instruction'>
-              Arrange the words to mean <span className='translation-span'>'{phrase[0].translation}'</span> in Yoruba
+              Arrange the words to mean <span className='translation-span'>'{sentence ? answer ||sentence.translation :phrase[0].translation}'</span> in Yoruba
           </h1>
           <div className="block-container" >
               <div

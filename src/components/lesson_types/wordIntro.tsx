@@ -27,7 +27,6 @@ const wordIntro = (props: propType) => {
 
   //  let phrase = {id: 1,brokenDownPhrase: '', containedWords: [], wordNote: '', text: '', phraseTranslation: '', wordTranslation: ''}
 
-
   let {id,answer,audio,image,lesson,phrase,prompt,sentence,video} = props
 
   phrase = phrase[0]
@@ -59,6 +58,8 @@ const wordIntro = (props: propType) => {
     setAnswers({...answers, phrases: [...answers.phrases, phrase.id]})
   }, [])
 
+  console.log(answer)
+
   // https://codepen.io/worksbyvan/pen/mqZENj?editors=0110
 
   return (
@@ -81,7 +82,7 @@ const wordIntro = (props: propType) => {
             </span>
             </span>)
         }})}</h2>
-        <h4>{phrase.translation && !answer ? phrase.translation : !answer? phrase.translation.replace(/\s*\(.*?\)\s*-\s*/g, ''): answer.match(/\w[^-]*$/)}</h4>
+        <h4>{phrase.translation && !answer ? phrase.translation : !answer? phrase.translation.replace(/\s*\(.*?\)\s*-\s*/g, ''): answer.replace(/.*?-/, "").trim()}</h4>
       </div>
     </div>
   )

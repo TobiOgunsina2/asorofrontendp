@@ -23,7 +23,6 @@ interface propType {
 
 const trueFalse = (props: propType) => {
   let {id,answer,audio,image,lesson, slideType, options, phrase,prompt,sentence,video} = props
-  console.log(props)
 
   const [questionAnswer, setQuestionAnswer] = useState('')
   let {setUserHasAnswered} = useContext(MyContext)
@@ -38,11 +37,10 @@ const trueFalse = (props: propType) => {
     }
     else{
       let random_boolean = Math.random() < 0.5
-      console.log(random_boolean)
-      if (!phrase[0].relatedPhrases[0] && random_boolean){
+      if (!phrase[0].relatedPhrases[0]){
         setQuestionAnswer(phrase[0].translation)
       }
-      else{
+      else if(phrase[0].relatedPhrases){
         api
         .get(`/api/phrase/${phrase[0].relatedPhrases[0]}/`)
         .then((res) => res.data)
@@ -56,21 +54,20 @@ const trueFalse = (props: propType) => {
   }, [])
   
   const handleClick = (e: any) => {
-    if ((phrase.phraseTranslation===questionAnswer).toString()===e.target.className) {
+    if ((phrase[0].translation===questionAnswer).toString()===e.target.className) {
       if (e.target.className=='true'){
         trueButton.current.style.border = '1.3px solid rgb(26, 222, 85)'
         trueButton.current.style.outline = 'none'
       }
       else{
-        console.log(trueButton.current.style.borderColor)
         falseButton.current.border = '1.3px solid rgb(26, 222, 85)'
       }
       setUserHasAnswered({answered:true, answeredRight: true})
-      setAnswers({...answers, phrases: [...answers.phrases, phrase.id]})
+      setAnswers({...answers, phrases: [...answers.phrases, phrase[0].id]})
     }
     else{
       setUserHasAnswered({answered:true, answeredRight: false})
-      setAnswers({...answers, phrases: [...answers.phrases, phrase.id]})
+      setAnswers({...answers, phrases: [...answers.phrases, phrase[0].id]})
       // Add component back to stack for half points
     }
   }
