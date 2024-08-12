@@ -37,6 +37,7 @@ const Learn = () => {
       setIsLoading(true)
     }, 400)
   }, [])
+
   const getProfile = () => {
     api
       .get(`api/progress/profile/${localStorage.getItem('user')}/`)

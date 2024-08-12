@@ -67,6 +67,9 @@ const LessonPage = () => {
           case 'p':   
             components.push(<lessonComponents.matchPairs key={data.slides[i].id} {...data.slides[i]}/>)
             break;
+          case 'n':   
+            components.push(<lessonComponents.note key={data.slides[i].id} {...data.slides[i]}/>)
+          break;
       }
     }
     components.push(<LessonComplete accuracy={1} lesson={Number(lid)} />)
